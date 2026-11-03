@@ -178,3 +178,10 @@
 - 时间「第N天 HH:MM」是日历时间：第 2 天 03:00 是第 2 天日期的凌晨（05:00 早晨之前）。
 - 断言：`incident {id, phase?, by?}`、`var {name, equals | gte | lte …}`、`topic_in_context id | {any} | {prefix}`、`practice {id, phase}`、`bet {phase, winner?}`、`map_has {find, sure?}`、`context_contains_any [..]`、`session_voice {tic_max, no_nagging, give_rate_min}`（最近一次会话的回复：口头禅次数、没有连着三句「打听」、intent 是 分享 / 提议 / 逗 / 安慰 的比例）。
 - 她被半夜叫起来（10 小时内 `lan_tired` 涨过）的那夜，05:00 不算睡了整夜，不减累。
+
+## 真模型的退路（G6）
+
+- 回复的 action 里写了固定目标的规则动作（`cover_wood` 只能盖木箱边的柴），宿主一律用规则里的目标，不管模型写了什么。
+- 他这句说到了他探路看见、还没画上的地方（关键词），她做的是 `draw_map` → 当成 `mark_map {find, note, sure}`，他说了距离（几里 / 几米 / 几步）才算 sure。
+- 模型没填 `practice`：能开始的活动的 `start_any` 词出现在他这句或她这句里就开始（事件 `by: host`）；进行中 `model` 步骤的 `say_any` 词出现在她这句里就算这一步做到。
+- `bet.about` 写成「明天的天气」「天气」也算明天天气，带「雪」算雪线；押注「风大」「大晴」这类说法认成一种天气（说到两种或带「不」的不算）。

@@ -17,7 +17,7 @@ test('G3: stars on a clear night: start → his 想 → two steps of hers → en
   lab.llm.mock.enqueue('reply', reply('想学认星吗？', { start: 'stars' }));
   await say('星星好多');
   assert.deepEqual(phases(evs), ['start0']);
-  lab.llm.mock.enqueue('reply', reply('往北边看，勺子形的那几颗。'));
+  lab.llm.mock.enqueue('reply', reply('你抬头，自己找找看。')); // no step word: her step 1 is not done by this line
   await say('想！'); // his words finish step 0
   assert.deepEqual(phases(evs), ['start0', 'step1']);
   assert.match(sec().text, /第 2 步，共 3 步/);
@@ -95,4 +95,23 @@ test('G3: keeping watch makes a meteor three times as likely (director_log); the
   assert.equal(on.lab.ledger.world(on.saveId).practice, null);
   assert.equal(on.lab.commitments.list(on.saveId, 'lan', 'open').filter(k => k.text.includes('守夜')).length, 0, 'the promise is kept');
   assert.equal(on.lab.ledger.world(on.saveId).vars.lan_tired >= 1, true);
+});
+
+test('G3: the model forgot the field: start_any in his words starts it, say_any in her line does a model step', async () => {
+  const { lab, saveId, say, goTo, evs } = await worldLab({ id: 's_prac5', features: { director: false } });
+  lab.worldsim.forceWeather(saveId, '晴');
+  goTo('2026-10-20T22:00:00');
+  lab.llm.mock.enqueue('reply', reply('认得几颗，想学吗？'));
+  await say('天这么清，你认得星星吗？');
+  assert.deepEqual(phases(evs), ['start0']);
+  assert.equal(evs('practice')[0].payload.by, 'host');
+  lab.llm.mock.enqueue('reply', reply('对，北边勺子形的那几颗。'));
+  await say('好啊');
+  assert.deepEqual(phases(evs), ['start0', 'step1', 'step2']);
+  lab.llm.mock.enqueue('reply', reply('那叫铜钩星。'));
+  await say('最亮那颗？');
+  assert.deepEqual(phases(evs), ['start0', 'step1', 'step2', 'end']);
+  lab.llm.mock.enqueue('reply', reply('认星好玩吧。'));
+  await say('再认一颗星星');
+  assert.equal(evs('practice').length, 5, 'starts again only when it can (still a clear night: yes)');
 });

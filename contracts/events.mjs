@@ -42,7 +42,7 @@ export const EVENT_TYPES = {
   sky_sign: { actor: 'host', payload: { sign: 'string', day: 'string' } },
   // phase start|resolved|expired; target = an object id when the incident is about one. by: char|user|together|host.
   incident: { actor: 'host', payload: { incident: 'string', phase: 'string', sev: 'number', by: 'string?', how: 'string?', lasting: 'boolean?', deadline: 'number?', news: 'string?' } },
-  practice: { actor: 'host', payload: { practice: 'string', phase: 'string', step: 'number?', outcome: 'string?' } }, // 3.0 G3
+  practice: { actor: 'host', payload: { practice: 'string', phase: 'string', step: 'number?', outcome: 'string?', by: 'string?' } }, // 3.0 G3
   bet: { actor: 'host', payload: { phase: 'string', about: 'string', her_pick: 'string', user_pick: 'string', stake: 'string', winner: 'string?' } }, // 3.0 G4
   scene_imported: { actor: 'host', payload: { source: 'string', scene_asset_id: 'string', layout_updated_at: 'string?', files: 'array' } }
 };

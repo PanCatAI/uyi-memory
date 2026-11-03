@@ -1,5 +1,6 @@
 // npm run eval       → every scenario with the mock model in a throwaway database; exit 1 on any failure.
 // npm run eval:live  → the same with the real model from .env (costs money; LAB_ALLOW_PAID=1 required).
+// --features=voice,world,topics → 3.0 G6: run the listed scenarios with these 3.0 features on (instead of the file's).
 // --arms s1-sword    → 2.0 D7: each listed scenario in three arms, kept in the app's database (data/lab.sqlite or
 //                      LAB_DATA_DIR) so the side-by-side page (/arms.html) shows them; writes arms-*.md too.
 import path from 'node:path';
@@ -13,6 +14,8 @@ import { formatWorldTime } from '../lib/clock.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const live = process.argv.includes('--live');
 const only = process.argv.slice(2).filter(a => !a.startsWith('--'));
+const featArg = process.argv.find(a => a.startsWith('--features='))?.split('=')[1];
+const features = featArg ? Object.fromEntries(featArg.split(',').filter(Boolean).map(k => [k, true])) : null;
 if (live && process.env.LAB_ALLOW_PAID !== '1') { console.error('eval:live 会调用真模型并产生费用，需要 LAB_ALLOW_PAID=1'); process.exit(2); }
 process.env.LAB_QUIET = '1';
 
@@ -46,7 +49,7 @@ if (armsMode) {
   process.exit(0);
 }
 for (const s of list) {
-  const v = await runner.runAll(runner.create(s.id, { provider: live ? 'live' : 'mock' }).id);
+  const v = await runner.runAll(runner.create(s.id, { provider: live ? 'live' : 'mock', features }).id);
   const pass = v.results.filter(r => r.ok === true && r.kind === 'expect').length;
   const fail = v.results.filter(r => r.ok === false);
   const later = v.results.filter(r => r.skip && /^待 /.test(r.detail)).length; // waits for a later task (e.g. D5)

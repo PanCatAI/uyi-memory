@@ -53,3 +53,24 @@ test('G2: the creek is up → the south valley cannot be booked', async () => {
   assert.throws(() => lab.scout.book(saveId, '南边溪谷'), /溪水涨了/);
   assert.doesNotThrow(() => lab.scout.book(saveId, '东边林子'));
 });
+
+test('G2/G6: a draw_map right after he names what he scouted is her drawing it (mark_map); cover_wood goes to the wood crate whatever she named', async () => {
+  const { lab, saveId, say, goTo, evs } = await worldLab({ id: 's_sc5', features: { director: false } });
+  goTo('2026-10-20T20:00:00');
+  lab.session.end(saveId);
+  lab.scout.go(saveId, '北坡脚', lab.clock.now(saveId), ['north_old_fire', 'north_snow_marker']);
+  await lab.session.start(saveId);
+  lab.llm.mock.enqueue('reply', { say: '我画上。', action: { name: 'draw_map', target: null, args: {} }, used: [], self_claims: [] });
+  await say('北坡脚下有个旧火堆，离营地大概五里，灰是干的。');
+  assert.deepEqual(lab.ledger.world(saveId).vars.map.map(m => [m.find, m.sure]), [['north_old_fire', true]]);
+  lab.llm.mock.enqueue('reply', { say: '画个问号。', action: { name: 'draw_map', target: null, args: {} }, used: [], self_claims: [] });
+  await say('雪线那块石头我也看见了，大概在半山腰。');
+  assert.deepEqual(lab.ledger.world(saveId).vars.map.map(m => [m.find, m.sure]).sort(), [['north_old_fire', true], ['north_snow_marker', false]]);
+  lab.llm.mock.enqueue('reply', { say: '画会儿图。', action: { name: 'draw_map', target: null, args: {} }, used: [], self_claims: [] });
+  await say('你在干嘛');
+  assert.ok(evs('char_action', e => e.action === 'draw_map').length >= 1, 'nothing scouted named: a plain draw_map');
+
+  lab.llm.mock.enqueue('reply', { say: '盖上了。', action: [{ name: 'walk_to', target: 'wood-crate-1', args: {} }, { name: 'cover_wood', target: 'supply', args: {} }], used: [], self_claims: [] });
+  await say('把柴盖上吧');
+  assert.equal(lab.ledger.world(saveId).vars.wood_covered, true);
+});
