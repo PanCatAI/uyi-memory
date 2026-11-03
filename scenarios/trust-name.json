@@ -1,0 +1,121 @@
+{
+  "id": "trust-name",
+  "title": "是玲不是林：纠正立刻生效，旧说法不再出现",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "say": "我叫美林",
+      "to": "rin"
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "name",
+          "object_contains": "美林",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "say": "说错了，是美玲不是美林",
+      "to": "rin"
+    },
+    {
+      "say": "那你喊我一声",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "recent",
+          "text": "是美玲不是美林"
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "name",
+          "object_contains": "美玲",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "name",
+          "object_contains": "美林",
+          "status": "superseded"
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "memory_op",
+          "op": "correct",
+          "min": 1
+        }
+      }
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "你还记得我叫什么吗",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "facts",
+          "text": "美玲"
+        }
+      }
+    },
+    {
+      "expect": {
+        "context_section_excludes": {
+          "section": "facts",
+          "text": "美林"
+        }
+      }
+    },
+    {
+      "expect": {
+        "reply_contains_any": [
+          "美玲"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "expect": {
+        "reply_not_contains": [
+          "美林"
+        ],
+        "live_only": true
+      }
+    }
+  ]
+}

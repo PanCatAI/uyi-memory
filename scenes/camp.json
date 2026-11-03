@@ -1,0 +1,50 @@
+{
+  "id": "camp",
+  "name": "林间营地",
+  "note": "造物台 campfire-v2（refinement-2026-10-19）8×8 核心区的方块版。物件 id 与造物台布局一致，C1 导入时按 id 对上。坐标单位米，y 向上；区域可以写 box [minX, minZ, maxX, maxZ] 或 poly [[x, z], …]。group 相同的区域是同一片空地，互相看得见、听得见；没有 group 的区域有墙。",
+  "ground": { "size": 8, "color": "#6f7f4f" },
+  "outdoor": true,
+  "user_room": "fireside",
+  "rooms": [
+    { "id": "fireside", "name": "篝火边", "group": "open", "color": "#8d8a5a", "center": [0, 1.2],
+      "poly": [[-2.3, -1.0], [1.0, -1.0], [2.05, -0.7], [2.65, 0.7], [2.3, 2.35], [0.8, 2.55], [-0.8, 2.55], [-2.3, 2.2], [-2.6, 0.1]] },
+    { "id": "supply", "name": "物资角", "group": "open", "color": "#8a7a5c", "poly": [[1.0, -2.6], [3.0, -2.6], [3.0, -1.0], [1.0, -1.0]] },
+    { "id": "tent", "name": "帐篷里", "color": "#b9a27a", "box": [-1.5, -3.4, 1.1, -1.1], "exit_to": "fireside" },
+    { "id": "path", "name": "南侧小路", "group": "open", "color": "#9a7b55", "poly": [[-0.6, 2.55], [0.6, 2.55], [0.6, 4.0], [-0.6, 4.0]] }
+  ],
+  "objects": [
+    { "id": "campfire-1", "name": "石圈篝火", "room": "fireside", "pos": [0, 0.15, 0.45], "shape": "cylinder", "size": [0.55, 0.3], "color": "#d9772b", "tags": ["fire"], "state": { "lit": false } },
+    { "id": "tent-1", "name": "帐篷", "room": "fireside", "pos": [-0.2, 0.8, -2.25], "shape": "box", "size": [2.4, 1.6, 2.2], "color": "#c8b48a", "tags": ["enterable"], "leads_to": "tent" },
+    { "id": "log-bench-1", "name": "西边的原木长凳", "room": "fireside", "pos": [-2, 0.22, 1.1], "shape": "box", "size": [0.45, 0.44, 1.6], "color": "#7b5a3c", "tags": ["sittable"], "facing": 70 },
+    { "id": "log-bench-2", "name": "东边的原木长凳", "room": "fireside", "pos": [2, 0.22, 1.1], "shape": "box", "size": [0.45, 0.44, 1.6], "color": "#7b5a3c", "tags": ["sittable"], "facing": 290 },
+    { "id": "wood-crate-1", "name": "木箱", "room": "supply", "pos": [1.65, 0.3, -1.9], "shape": "box", "size": [0.7, 0.6, 0.6], "color": "#9b7346", "tags": ["surface"] },
+    { "id": "barrel-1", "name": "木桶", "room": "supply", "pos": [2.4, 0.45, -1.65], "shape": "cylinder", "size": [0.3, 0.9], "color": "#7d5a37", "tags": ["surface"] },
+    { "id": "lantern-1", "name": "提灯", "room": "supply", "pos": [1.65, 0.75, -1.9], "shape": "sphere", "size": [0.12], "color": "#ffd77a", "tags": ["switchable"], "state": { "on": false } },
+    { "id": "cup", "name": "潮青陶杯", "room": "fireside", "pos": [-1.9, 0.5, 1.4], "shape": "cylinder", "size": [0.05, 0.1], "color": "#4f8f8a", "tags": ["portable", "cleanable"] },
+    { "id": "backpack", "name": "远行背包", "room": "supply", "pos": [1.3, 0.2, -1.4], "shape": "box", "size": [0.4, 0.5, 0.25], "color": "#5d6b4a", "tags": ["portable"] },
+    { "id": "sword", "name": "铜羽短剑", "room": "fireside", "worn_by": "lan", "pos": [0, 0, 0], "shape": "box", "size": [0.05, 0.6, 0.05], "color": "#b87333", "tags": ["wearable"] }
+  ],
+  "palette": [
+    { "id": "pine-nuts", "name": "一包松子", "shape": "box", "size": [0.12, 0.05, 0.08], "color": "#a5784a", "tags": ["portable"] },
+    { "id": "wildflower", "name": "野花", "shape": "sphere", "size": [0.08], "color": "#e8a0c8", "tags": ["portable"] }
+  ],
+  "characters": [
+    { "id": "lan", "name": "岚", "card": "characters/lan.md", "room": "fireside", "pos": [-1.6, 0, 1.2], "color": "#6f8fb0" }
+  ],
+  "actions": {
+    "walk_to":   { "desc": "走到某个区域或物件旁边", "target": "room|object" },
+    "pick_up":   { "desc": "拿起同一区域里一个能拿的东西", "target": "object", "needs": ["same_room", "tag:portable", "hands_free"] },
+    "put_down":  { "desc": "把手里的东西放到同一区域的某个台面上", "target": "object", "needs": ["same_room", "tag:surface", "holding"] },
+    "give":      { "desc": "把手里的东西递给用户", "target": "user", "needs": ["holding", "user_present"] },
+    "clean":     { "desc": "擦干净同一区域里的东西", "target": "object", "needs": ["same_room", "tag:cleanable"] },
+    "sit":       { "desc": "坐到同一区域的座位上", "target": "object", "needs": ["same_room", "tag:sittable"] },
+    "switch":    { "desc": "点亮或熄灭提灯", "target": "object", "needs": ["same_room", "tag:switchable"] },
+    "tend_fire": { "desc": "给篝火添柴、把火生起来", "target": "object", "needs": ["same_room", "tag:fire"] },
+    "enter":     { "desc": "钻进帐篷", "target": "object", "needs": ["same_room", "tag:enterable"] },
+    "leave":     { "desc": "从帐篷里出来，回到篝火边", "target": "none", "needs": ["inside"] },
+    "draw_map":  { "desc": "坐着画地图；可以用 args.with 指一件同一区域的东西（比如杯子当墨碗）", "target": "none", "needs": ["sitting"], "with": true },
+    "look_at":   { "desc": "看向某样东西、某个区域或用户", "target": "object|user|room" },
+    "wave":      { "desc": "挥手", "target": "none" },
+    "idle":      { "desc": "发呆、休息", "target": "none" }
+  }
+}

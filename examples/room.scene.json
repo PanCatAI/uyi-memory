@@ -1,0 +1,35 @@
+{
+  "id": "my_room",
+  "name": "我的房间",
+  "note": "桌面端传给插件的最小场景示例。坐标单位米，y 向上；rooms 用 box [minX, minZ, maxX, maxZ] 或 poly。",
+  "rooms": [
+    { "id": "room", "name": "房间", "box": [-4, -4, 4, 4] },
+    { "id": "balcony", "name": "阳台", "box": [4, -2, 7, 2] }
+  ],
+  "objects": [
+    { "id": "red_cup", "name": "红杯子", "room": "room", "pos": [1, 0.8, 0], "tags": ["portable", "cleanable"] },
+    { "id": "desk", "name": "书桌", "room": "room", "pos": [1, 0.4, 0], "tags": ["surface"] },
+    { "id": "sofa", "name": "沙发", "room": "room", "pos": [-2, 0.4, 1], "tags": ["sittable"] },
+    { "id": "lamp", "name": "台灯", "room": "room", "pos": [1.5, 1, 0], "tags": ["switchable"], "state": { "on": false } }
+  ],
+  "palette": [
+    { "id": "new_scarf", "name": "新围巾", "tags": ["portable", "wearable"] },
+    { "id": "plant", "name": "盆栽", "tags": ["portable"], "rooms": ["room", "balcony"] }
+  ],
+  "characters": [
+    { "id": "rin", "name": "玲", "room": "room", "pos": [0, 0, 1], "card_text": "# 玲\n\n- id: rin\n- 语言：中文\n\n## 设定（作者写的，永远优先）\n- 住在用户桌面上的小房间里。\n- 喜欢收集小东西，不喜欢喝苦的东西。\n\n## 说话方式\n- 温和、短句。\n\n## 禁止\n- 不说自己是 AI、程序、模型。\n" }
+  ],
+  "actions": {
+    "walk_to": { "desc": "走到某个房间或物件旁边", "target": "room|object" },
+    "pick_up": { "desc": "拿起同一房间里一个能拿的东西", "target": "object", "needs": ["same_room", "tag:portable", "hands_free"] },
+    "put_down": { "desc": "把手里的东西放到同一房间的某个台面上", "target": "object", "needs": ["same_room", "tag:surface", "holding"] },
+    "give": { "desc": "把手里的东西递给用户", "target": "user", "needs": ["holding", "user_present"] },
+    "wear": { "desc": "穿戴手里的东西", "target": "object", "needs": ["held_target", "tag:wearable"] },
+    "clean": { "desc": "擦干净同一房间里的东西", "target": "object", "needs": ["same_room", "tag:cleanable"] },
+    "sit": { "desc": "坐到同一房间的座位上", "target": "object", "needs": ["same_room", "tag:sittable"] },
+    "switch": { "desc": "开关灯", "target": "object", "needs": ["same_room", "tag:switchable"] },
+    "look_at": { "desc": "看向某样东西或用户", "target": "object|user|room" },
+    "wave": { "desc": "挥手", "target": "none" },
+    "idle": { "desc": "发呆、休息", "target": "none" }
+  }
+}

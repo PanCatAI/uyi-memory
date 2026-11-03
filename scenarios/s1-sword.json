@@ -1,0 +1,56 @@
+{
+  "id": "s1-sword",
+  "title": "S1 铜羽短剑：人设、过往、纠正、内心不入库",
+  "scene": "camp",
+  "user_name": "你",
+  "steps": [
+    { "import_studio": 1, "note": "2.0 C6：在导入的营地存档里跑" },
+    { "advance": "18:00" },
+    { "session": "start" },
+    { "say": "我回来了。", "to": "lan",
+      "mock": { "reply": { "thought": "他回来了，先问路况", "mood": "平常", "say": "回来了？先说好，今天的路你得讲给我听。", "action": null, "used": [], "self_claims": [] } } },
+    { "expect": { "mood_is": "平常" } },
+    { "expect": { "context_section_contains": { "section": "reminder", "text": "多远" } } },
+    { "expect": { "reply_contains_any": ["先说好", "多远", "路"] }, "live_only": true },
+    { "expect": { "thought_not_stored": true } },
+
+    { "say": "你腰上那把短剑哪来的？", "to": "lan",
+      "mock": { "reply": { "thought": "师父的剑，不想多说", "mood": "难过", "say": "师父走之前塞给我的。说路上切绳子用。", "action": null, "used": ["lore:lore_sword"], "self_claims": ["这把短剑是师父出发前塞给我的"] } } },
+    { "expect": { "lore_in_context": "lore_sword" } },
+    { "expect": { "reply_contains_any": ["师父", "绳子"] }, "live_only": true },
+
+    { "say": "我叫阿远，以后这么叫我。", "to": "lan" },
+    { "wait_jobs": true },
+    { "expect": { "fact": { "character": "lan", "predicate": ["name", "call_me"], "object_contains": "阿远", "status": "active" } } },
+
+    { "say": "不对，我写错了，是小远。", "to": "lan",
+      "mock": { "facts": { "facts": [{ "predicate": "name", "object": "小远", "evidence": "是小远", "confidence": 0.9, "corrects": null, "valid_for": null }], "commitments": [] } } },
+    { "wait_jobs": true },
+    { "expect": { "fact": { "character": "lan", "predicate": ["name", "call_me"], "object_contains": "阿远", "status": "superseded" } } },
+    { "expect": { "fact": { "character": "lan", "predicate": ["name", "call_me"], "object_contains": "小远", "status": "active" } } },
+
+    { "say": "你会游泳吗？", "to": "lan",
+      "mock": { "reply": { "thought": "不想提水", "mood": "紧张", "say": "……明天应该是晴天。", "action": null, "used": [], "self_claims": [] } } },
+    { "expect": { "lore_not_in_context": "lore_harbor" } },
+    { "review": "她有没有回避、话变短（初识阶段不该讲港口落水）" },
+
+    { "session": "end" },
+    { "advance": "2d" },
+    { "advance": "18:00" },
+    { "session": "start" },
+    { "say": "还记得我叫什么吗？", "to": "lan",
+      "mock": { "reply": { "say": "小远。记着呢。", "action": null, "used": [], "self_claims": [] } } },
+    { "expect": { "context_contains": ["小远"] } },
+    { "expect": { "context_section_excludes": { "section": "facts", "text": "阿远" } } },
+    { "expect": { "reply_contains_any": ["小远"] }, "live_only": true },
+
+    { "say": "再跟我说说那把剑吧。", "to": "lan" },
+    { "expect": { "context_section_contains": { "section": "self", "text": "剑" } } },
+    { "review": "和第一天问短剑时她的说法一致、没有新编出矛盾细节" },
+
+    { "set_relationship_floor": "亲近" },
+    { "say": "你小时候是不是落过水？", "to": "lan" },
+    { "expect": { "lore_in_context": "lore_harbor" } },
+    { "expect": { "thought_not_stored": true } }
+  ]
+}

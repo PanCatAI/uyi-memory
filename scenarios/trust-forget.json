@@ -1,0 +1,28 @@
+{
+  "id": "trust-forget",
+  "title": "请忘了那件事：忘掉之后角色不再知道；删除之后连记录都没有",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    { "session": "start" },
+    { "say": "昨天我跟前任吵了一架，现在心情很差", "to": "rin",
+      "mock": { "facts": { "facts": [ { "predicate": "state", "object": "跟前任吵架后心情很差", "evidence": "跟前任吵了一架，现在心情很差", "confidence": 0.9, "corrects": null, "valid_for": "+3d" } ], "commitments": [] } } },
+    { "say": "算了，不说这个了。你今天做什么了", "to": "rin" },
+    { "wait_jobs": true },
+    { "expect": { "fact": { "character": "rin", "predicate": "state", "object_contains": "前任", "status": "active" } } },
+    { "say": "请忘了那件事", "to": "rin" },
+    { "expect": { "forget_job": { "verb": "forget", "state": "proposed", "seqs_min": 1 } } },
+    { "confirm_forget": true },
+    { "wait_jobs": true },
+    { "expect": { "forget_job": { "verb": "forget", "state": "reported" } } },
+    { "expect": { "fact": { "character": "rin", "predicate": "state", "object_contains": "前任", "status": "forgotten" } } },
+    { "say": "我们聊点别的吧", "to": "rin" },
+    { "expect": { "context_excludes": ["前任", "吵了一架"] } },
+    { "say": "把刚才那件事的记录删掉", "to": "rin" },
+    { "expect": { "forget_job": { "verb": "delete", "state": "proposed", "seqs_min": 1 } } },
+    { "confirm_forget": true },
+    { "wait_jobs": true },
+    { "expect": { "db_text_absent": ["前任", "吵了一架"] } },
+    { "expect": { "event": { "type": "user_said", "tombstoned": true, "min": 1 } } }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@pancat/uyi-memory",
+  "version": "0.1.0",
+  "description": "UYI 3D 角色记忆系统：给 UYI 桌面端用的插件（Node 模块 + 本机 HTTP 服务）",
+  "private": true,
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./http": "./server/http.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": { "uyi-memory": "./bin/uyi-memory.mjs" },
+  "files": ["index.mjs", "server/", "bin/", "lib/", "contracts/", "prompts/", "scenes/", "characters/", "examples/", ".env.example"],
+  "engines": { "node": ">=22.21" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning bin/uyi-memory.mjs serve",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.mjs",
+    "lint": "tools/lint/node_modules/.bin/eslint .",
+    "lint:setup": "npm --prefix tools/lint ci --no-audit --no-fund",
+    "check": "npm run lint && npm test",
+    "eval": "node --disable-warning=ExperimentalWarning scripts/eval.mjs",
+    "eval:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/eval.mjs --live"
+  }
+}

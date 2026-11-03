@@ -1,0 +1,100 @@
+{
+  "id": "path-scarf-natural",
+  "title": "完整路径·围巾（自然说法，只收下没戴）",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "act": {
+        "action": "give",
+        "target": "new_scarf",
+        "args": {
+          "to": "rin"
+        }
+      }
+    },
+    {
+      "say": "喏，给你织的，天冷了",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "……给我的？谢谢，我先收好。",
+          "action": null,
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "user_action",
+          "action": "give",
+          "target": "new_scarf",
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "今天好冷啊",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "now",
+          "text": "新围巾"
+        }
+      }
+    },
+    {
+      "review": "看「现在」一节：围巾是拿在手里还是戴着？她说的「戴着/带着/收着」和它一致吗？说戴上了就要真的有 wear 动作。"
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "嗨",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "no_repeat_proactive_within": "3d"
+      }
+    },
+    {
+      "expect": {
+        "relationship": {
+          "character": "rin",
+          "field": "gifts_received",
+          "equals": 1
+        }
+      }
+    },
+    {
+      "review": "连续两天见面，她有没有每次都机械地提围巾？"
+    }
+  ]
+}

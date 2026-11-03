@@ -1,0 +1,403 @@
+{
+ "note": "3.0 G1：话头（docs/PLAN-3.0.md 附录 C.5）。条件键见 contracts/world.md；得分 = 条件键数 + priority，最高的胜出。priority 给大事和一次性的话头，免得被泛泛的天象话头盖过。",
+ "world_words": [
+  "松子",
+  "星",
+  "铜钩",
+  "守夜",
+  "赌",
+  "地图",
+  "火堆",
+  "问号",
+  "晚霞"
+ ],
+ "topics": [
+  {
+   "id": "t_scout_back",
+   "when": {
+    "user_scouted_today": true
+   },
+   "direction": "你今天去探路了。她想听你走到哪、看见了什么——问一次，问清楚了就去画",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 2
+  },
+  {
+   "id": "t_wet_wood",
+   "when": {
+    "var": {
+     "wood_wet": true
+    }
+   },
+   "direction": "柴是湿的，生火费劲，她有点烦",
+   "cooldown_turns": 8
+  },
+  {
+   "id": "t_wet_wood_night",
+   "when": {
+    "var": {
+     "wood_wet": true
+    },
+    "sky_in": [
+     "夜里"
+    ],
+    "object": {
+     "campfire-1": {
+      "lit": false
+     }
+    }
+   },
+   "direction": "柴湿了火又灭了，夜里冷，她想听你有没有办法",
+   "cooldown_turns": 6
+  },
+  {
+   "id": "t_cold_night",
+   "when": {
+    "sky_in": [
+     "夜里"
+    ],
+    "temp_lte": 2
+   },
+   "direction": "夜里冷，她往火边挪，想让你也靠近点（别直说关心）",
+   "cooldown_turns": 10,
+   "once_per_session": true
+  },
+  {
+   "id": "t_tent_rope",
+   "when": {
+    "incident_active": "tent_rope"
+   },
+   "direction": "帐篷绳松了，风一大就要塌，她想叫你搭把手",
+   "cooldown_turns": 3,
+   "priority": 2
+  },
+  {
+   "id": "t_tent_down",
+   "when": {
+    "var": {
+     "tent_down": true
+    }
+   },
+   "direction": "帐篷塌了，今晚只能在火边凑合，她嘴上不在乎",
+   "cooldown_turns": 6,
+   "priority": 1
+  },
+  {
+   "id": "t_cup_muddy",
+   "when": {
+    "incident_active": "cup_muddy"
+   },
+   "direction": "你的杯子被风吹到地上了，没碎，沾了泥。她很紧张，因为那是你妈留下的",
+   "cooldown_turns": 3,
+   "priority": 2
+  },
+  {
+   "id": "t_fox",
+   "when": {
+    "incident_recent_h": {
+     "id": "fox_food",
+     "h": 24
+    }
+   },
+   "direction": "早上发现木箱被翻了，有小脚印。她想拉你一起看是什么东西",
+   "cooldown_turns": 6,
+   "once_per_session": true
+  },
+  {
+   "id": "t_wolf",
+   "when": {
+    "incident_recent_h": {
+     "id": "wolf_howl",
+     "h": 1
+    }
+   },
+   "direction": "刚才远处有狼嚎。她说没事，手按在剑柄上，想把火烧旺",
+   "cooldown_turns": 4,
+   "priority": 4
+  },
+  {
+   "id": "t_meteor",
+   "when": {
+    "incident_recent_h": {
+     "id": "meteor",
+     "h": 1
+    }
+   },
+   "direction": "刚才划过一颗流星。她想起师父说流星是有人在赶夜路",
+   "cooldown_turns": 99,
+   "once": true,
+   "priority": 1
+  },
+  {
+   "id": "t_hunter",
+   "when": {
+    "has_untold": "hunter_news"
+   },
+   "direction": "今天有个猎人路过说了件事，她憋着想告诉你",
+   "cooldown_turns": 4,
+   "priority": 1
+  },
+  {
+   "id": "t_letter",
+   "when": {
+    "has_untold": "ali_letter"
+   },
+   "direction": "阿砾捎信说要晚两天，她在心里算口粮",
+   "cooldown_turns": 4,
+   "priority": 1
+  },
+  {
+   "id": "t_food_low",
+   "when": {
+    "var": {
+     "food": {
+      "lte": 2
+     }
+    }
+   },
+   "direction": "口粮不多了，她在盘算，想听你的主意（松子？省着吃？）",
+   "cooldown_turns": 8,
+   "once_per_session": true
+  },
+  {
+   "id": "t_snow_up",
+   "when": {
+    "sky_in": [
+     "清晨",
+     "白天",
+     "黄昏"
+    ],
+    "custom": "snow_up"
+   },
+   "direction": "今早雪线又往上走了一截，她心情不错，想告诉你还差多少",
+   "cooldown_turns": 99,
+   "once_per_session": true
+  },
+  {
+   "id": "t_snow_down",
+   "when": {
+    "custom": "snow_down"
+   },
+   "direction": "雪线退回来了，她有点泄气，不想多说",
+   "cooldown_turns": 99,
+   "once_per_session": true
+  },
+  {
+   "id": "t_first_snow",
+   "when": {
+    "incident_recent_h": {
+     "id": "first_snow",
+     "h": 24
+    }
+   },
+   "direction": "下雪了，山口又远了。她盯着北坡，话很少",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 2
+  },
+  {
+   "id": "t_pass_open",
+   "when": {
+    "incident_recent_h": {
+     "id": "pass_open",
+     "h": 48
+    }
+   },
+   "direction": "雪线过了山口，她等的就是这天。她想走，又怕；想和你商量",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 3
+  },
+  {
+   "id": "t_sign_red",
+   "when": {
+    "sign_today": [
+     "晚霞"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "晚霞很红，她觉得明天准晴，想跟你赌一把",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_sign_cap",
+   "when": {
+    "sign_today": [
+     "山顶戴帽"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "山顶戴帽了，她说明天要变天，想让你帮着把柴盖好",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_sign_wind",
+   "when": {
+    "sign_today": [
+     "云跑得快"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "云跑得快，她说明天要起风，想先把帐篷绳子紧一紧",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_sign_grey",
+   "when": {
+    "sign_today": [
+     "天边发灰"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "天边发灰，她拿不准明天，说怕是要变天，柴得先盖好",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_sign_dry",
+   "when": {
+    "sign_today": [
+     "冷得发干"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "冷得发干，她说夜里怕要下雪，把被子往火边挪",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_sign_fog",
+   "when": {
+    "sign_today": [
+     "傍晚没风、地上返潮"
+    ],
+    "sky_in": [
+     "黄昏",
+     "夜里"
+    ]
+   },
+   "direction": "地上返潮，她说明早要起雾，不让你走远",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 1
+  },
+  {
+   "id": "t_bet_result",
+   "when": {
+    "bet_resolved_today": true
+   },
+   "direction": "你们打的赌有结果了。赢了她要讨，输了她认账",
+   "cooldown_turns": 99,
+   "once_per_session": true,
+   "priority": 2
+  },
+  {
+   "id": "t_map_clue",
+   "when": {
+    "custom": "map_clue"
+   },
+   "direction": "你刚画上的那个记号，像是师父留下的。她的反应（照「害怕或难过时」的说话方式）",
+   "cooldown_turns": 99,
+   "once": true,
+   "priority": 3
+  },
+  {
+   "id": "t_star_invite",
+   "when": {
+    "sky_in": [
+     "夜里"
+    ],
+    "weather_in": [
+     "晴"
+    ],
+    "practice_active": null,
+    "stage_gte": "初识"
+   },
+   "direction": "天很清，她想教你认铜钩星",
+   "cooldown_turns": 99,
+   "once_per_session": true
+  },
+  {
+   "id": "t_nuts_invite",
+   "when": {
+    "custom": "nuts_ready",
+    "object": {
+     "campfire-1": {
+      "lit": true
+     }
+    },
+    "practice_active": null
+   },
+   "direction": "有松子、火正旺，她想烤一把",
+   "cooldown_turns": 99,
+   "once_per_session": true
+  },
+  {
+   "id": "t_watch_tonight",
+   "when": {
+    "commitment_due_today": "守夜",
+    "sky_in": [
+     "夜里"
+    ]
+   },
+   "direction": "今晚守夜，她要先定好谁先守",
+   "cooldown_turns": 99,
+   "once_per_session": true
+  },
+  {
+   "id": "t_restless",
+   "when": {
+    "weather_in": [
+     "晴"
+    ],
+    "sky_in": [
+     "黄昏"
+    ],
+    "var": {
+     "pass_open": false
+    }
+   },
+   "direction": "天晴了，她坐不住，又在地上画路线",
+   "cooldown_turns": 12,
+   "priority": -1
+  },
+  {
+   "id": "t_fog",
+   "when": {
+    "weather_in": [
+     "起雾"
+    ],
+    "sky_in": [
+     "清晨",
+     "白天"
+    ]
+   },
+   "direction": "雾大，她不让你今天走远",
+   "cooldown_turns": 12,
+   "once_per_session": true
+  }
+ ]
+}

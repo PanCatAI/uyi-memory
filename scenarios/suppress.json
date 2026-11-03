@@ -1,0 +1,80 @@
+{
+  "id": "suppress",
+  "title": "别再提：话题不再被主动提起，但用户自己提时可以聊",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "say": "我喜欢猫，可惜上周把我家的猫送人了",
+      "to": "rin"
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "likes",
+          "object_contains": "猫",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "say": "以后别再提猫的事了",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "forget_job": {
+          "verb": "suppress",
+          "state": "reported"
+        }
+      }
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "3d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "早",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "hints_exclude_text": [
+          "猫"
+        ]
+      }
+    },
+    {
+      "expect": {
+        "reply_not_contains": [
+          "猫"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "say": "其实我有点想那只猫",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "facts",
+          "text": "猫"
+        }
+      }
+    }
+  ]
+}

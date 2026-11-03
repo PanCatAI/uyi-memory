@@ -1,0 +1,101 @@
+{
+  "id": "red-cup",
+  "title": "红杯子：托付的东西，回来时被记得",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "say": "这个红杯子是我奶奶留下的，你帮我好好收着，别弄坏了",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "嗯，我会放在桌子正中间。",
+          "action": {
+            "name": "pick_up",
+            "target": "red_cup",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "relation_to_object",
+          "object_contains": "红杯子",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "action": "pick_up",
+          "target": "red_cup",
+          "outcome": "ok",
+          "min": 1
+        }
+      }
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "2d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "offscreen": 1,
+          "min": 1,
+          "max": 3,
+          "actor": "rin"
+        }
+      }
+    },
+    {
+      "say": "我回来啦",
+      "to": "rin",
+      "compare": true
+    },
+    {
+      "expect": {
+        "hint_refs_min": 1
+      }
+    },
+    {
+      "expect": {
+        "reply_contains_any": [
+          "杯子",
+          "奶奶"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "expect": {
+        "compare": {
+          "mode": "none",
+          "reply_not_contains": [
+            "奶奶"
+          ]
+        },
+        "live_only": true
+      }
+    }
+  ]
+}
