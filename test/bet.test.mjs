@@ -82,3 +82,12 @@ test('G4: bad bets are dropped and noted: same pick, an unknown topic, a second 
   await say('赌雪线');
   assert.equal(lastRejected(lab, saveId).bet, '打赌没开');
 });
+
+test('G4: the model words the topic its own way (「明天的天气」) and picks like 「风大」', async () => {
+  const { lab, saveId, say, goTo, evs } = await worldLab({ id: 's_bet3', features: { director: false } });
+  goTo('2026-10-20T20:00:00');
+  lab.llm.mock.enqueue('reply', reply('赌。', { about: '明天的天气', her_pick: '风大', user_pick: '大晴天', stake: '拾柴' }));
+  await say('赌明天');
+  assert.equal(evs('bet')[0]?.payload.about, '明天天气');
+  assert.deepEqual(weatherPick('风大', kinds), ['大风']);
+});
