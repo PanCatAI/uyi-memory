@@ -1,0 +1,378 @@
+{
+  "note": "3.0 F1–F3：营地的量、天气和动作规则。宿主读，模型不读。改数字照 docs/PLAN-3.0.md 附录 C。",
+  "vars": {
+    "wood": 6,
+    "wood_wet": false,
+    "wood_covered": false,
+    "food": 5,
+    "snowline": 1900,
+    "snowline_seen": null,
+    "pass_open": false,
+    "pass_height": 2200,
+    "tent_secure": true,
+    "tent_down": false,
+    "ali_eta_days": 10,
+    "lan_tired": 0,
+    "crate_secure_until": null,
+    "forage_day": null,
+    "clues": 0,
+    "map": [],
+    "scout_plan": null
+  },
+  "hidden_vars": [
+    "snowline",
+    "pass_open",
+    "crate_secure_until",
+    "forage_day",
+    "scout_plan"
+  ],
+  "snowline_delta": {
+    "晴": 60,
+    "阴": 15,
+    "起雾": 20,
+    "大风": 10,
+    "小雨": -20,
+    "大雨": -40,
+    "雪": -120
+  },
+  "snowline_range": [
+    1600,
+    2600
+  ],
+  "wood_max": 12,
+  "wood_dry_hours": {
+    "fire_lit": 6,
+    "no_fire": 12
+  },
+  "food_per_day_at": "19:00",
+  "ali_back_at": "18:00",
+  "light_rain_fire_hours": 1.5,
+  "rain": [
+    "小雨",
+    "大雨",
+    "雪"
+  ],
+  "weather": {
+    "kinds": [
+      "晴",
+      "阴",
+      "小雨",
+      "大雨",
+      "起雾",
+      "大风",
+      "雪"
+    ],
+    "first_day": "晴",
+    "snow_from_day": 8,
+    "snow_chance": 0.5,
+    "transitions": {
+      "晴": {
+        "晴": 45,
+        "阴": 20,
+        "小雨": 8,
+        "大雨": 2,
+        "起雾": 15,
+        "大风": 10
+      },
+      "阴": {
+        "晴": 25,
+        "阴": 25,
+        "小雨": 25,
+        "大雨": 8,
+        "起雾": 7,
+        "大风": 10
+      },
+      "小雨": {
+        "晴": 15,
+        "阴": 30,
+        "小雨": 25,
+        "大雨": 10,
+        "起雾": 15,
+        "大风": 5
+      },
+      "大雨": {
+        "晴": 10,
+        "阴": 35,
+        "小雨": 25,
+        "大雨": 10,
+        "起雾": 15,
+        "大风": 5
+      },
+      "起雾": {
+        "晴": 40,
+        "阴": 25,
+        "小雨": 10,
+        "大雨": 0,
+        "起雾": 20,
+        "大风": 5
+      },
+      "大风": {
+        "晴": 35,
+        "阴": 25,
+        "小雨": 15,
+        "大雨": 5,
+        "起雾": 5,
+        "大风": 15
+      },
+      "雪": {
+        "晴": 30,
+        "阴": 35,
+        "小雨": 5,
+        "大雨": 5,
+        "起雾": 10,
+        "大风": 15
+      }
+    },
+    "afternoon": {
+      "起雾": {
+        "晴": 60,
+        "阴": 40
+      },
+      "阴": {
+        "小雨": 30,
+        "阴": 70
+      },
+      "晴": {
+        "大风": 10,
+        "晴": 90
+      },
+      "小雨": {
+        "阴": 40,
+        "小雨": 60
+      }
+    },
+    "temps": {
+      "晴": {
+        "hi": 12,
+        "lo": 0,
+        "wind": "1–2 级"
+      },
+      "阴": {
+        "hi": 9,
+        "lo": 3,
+        "wind": "2 级"
+      },
+      "小雨": {
+        "hi": 7,
+        "lo": 3,
+        "wind": "2 级"
+      },
+      "大雨": {
+        "hi": 6,
+        "lo": 2,
+        "wind": "3 级"
+      },
+      "起雾": {
+        "hi": 8,
+        "lo": 2,
+        "wind": "1 级"
+      },
+      "大风": {
+        "hi": 6,
+        "lo": -2,
+        "wind": "5 级"
+      },
+      "雪": {
+        "hi": 0,
+        "lo": -5,
+        "wind": "3 级"
+      }
+    },
+    "cooling_per_day": 0.3,
+    "signs_at": "17:00",
+    "signs": {
+      "晴": {
+        "晚霞": 80,
+        "山顶戴帽": 20
+      },
+      "阴": {
+        "天边发灰": 70,
+        "晚霞": 30
+      },
+      "小雨": {
+        "山顶戴帽": 75,
+        "天边发灰": 25
+      },
+      "大雨": {
+        "山顶戴帽": 75,
+        "天边发灰": 25
+      },
+      "起雾": {
+        "傍晚没风、地上返潮": 75,
+        "晚霞": 25
+      },
+      "大风": {
+        "云跑得快": 80,
+        "天边发灰": 20
+      },
+      "雪": {
+        "山顶戴帽": 60,
+        "冷得发干": 40
+      }
+    },
+    "sign_meaning": {
+      "晚霞": "晴",
+      "山顶戴帽": "下雨",
+      "云跑得快": "起风",
+      "傍晚没风、地上返潮": "起雾",
+      "天边发灰": "阴",
+      "冷得发干": "可能下雪"
+    }
+  },
+  "actions": {
+    "tend_fire": {
+      "requires": [
+        {
+          "var": "wood",
+          "gte": 1,
+          "reason": "没柴了"
+        },
+        {
+          "var": "wood_wet",
+          "eq": false,
+          "reason": "柴是湿的"
+        }
+      ],
+      "effects": {
+        "add": {
+          "wood": -1
+        }
+      },
+      "cause": "添柴"
+    },
+    "gather_wood": {
+      "spec": {
+        "desc": "在南侧小路边拾柴（拾三捆）",
+        "target": "none"
+      },
+      "requires": [
+        {
+          "in": "path",
+          "reason": "得先走到南侧小路"
+        },
+        {
+          "var": "wood",
+          "lt": 12,
+          "reason": "柴已经堆满了"
+        }
+      ],
+      "effects": {
+        "add": {
+          "wood": 3
+        }
+      },
+      "cause": "拾柴"
+    },
+    "cover_wood": {
+      "spec": {
+        "desc": "用油布把木箱边的柴盖上",
+        "target": "object",
+        "needs": [
+          "same_room"
+        ]
+      },
+      "target": "wood-crate-1",
+      "requires": [
+        {
+          "var": "wood_covered",
+          "eq": false,
+          "reason": "柴已经盖好了"
+        }
+      ],
+      "effects": {
+        "set": {
+          "wood_covered": true
+        }
+      },
+      "cause": "盖柴"
+    },
+    "fix_tent": {
+      "spec": {
+        "desc": "重新拉紧帐篷绳、打桩",
+        "target": "object",
+        "needs": [
+          "same_room",
+          "tag:enterable"
+        ]
+      },
+      "target": "tent-1",
+      "effects": {
+        "set": {
+          "tent_secure": true,
+          "tent_down": false
+        }
+      },
+      "cause": "修帐篷"
+    },
+    "secure_crate": {
+      "spec": {
+        "desc": "把木箱捆紧、压上石头，防野兽",
+        "target": "object",
+        "needs": [
+          "same_room"
+        ]
+      },
+      "target": "wood-crate-1",
+      "effects": {
+        "until_days": {
+          "crate_secure_until": 3
+        }
+      },
+      "cause": "捆木箱"
+    },
+    "forage": {
+      "spec": {
+        "desc": "在南侧小路边找点吃的（一天一次）",
+        "target": "none"
+      },
+      "requires": [
+        {
+          "in": "path",
+          "reason": "得先走到南侧小路"
+        },
+        {
+          "once_per_day": "forage_day",
+          "reason": "今天已经找过了"
+        }
+      ],
+      "effects": {
+        "chance": {
+          "p": 0.5,
+          "add": {
+            "food": 1
+          },
+          "miss": "没找到"
+        }
+      },
+      "cause": "找吃的"
+    },
+    "mark_map": {
+      "spec": {
+        "desc": "在地图上画一处他探路看见的地方：args.note 写画的什么（用他说的词），args.sure 他说清楚了填 true、含糊就填 false（打个问号）",
+        "target": "none"
+      },
+      "map": true,
+      "cause": "在地图上画了一笔"
+    }
+  },
+  "gifts": {
+    "pine-nuts": {
+      "add": {
+        "food": 1
+      },
+      "cause": "用户送的松子"
+    }
+  },
+  "user_actions": {
+    "cover_wood": {
+      "label": "盖柴",
+      "target": "wood-crate-1",
+      "effects": {
+        "set": {
+          "wood_covered": true
+        }
+      },
+      "cause": "用户盖柴"
+    }
+  }
+}

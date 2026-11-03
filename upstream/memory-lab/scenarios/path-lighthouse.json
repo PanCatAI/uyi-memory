@@ -1,0 +1,205 @@
+{
+  "id": "path-lighthouse",
+  "title": "完整路径·灯塔：先没楼梯爬不上，搭了楼梯一步步上去点灯，几天后回去",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "say": "我们去灯塔那边吧",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "好呀，走吧。",
+          "action": {
+            "name": "walk_to",
+            "target": "lighthouse",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "你一直想上灯塔顶，爬上去试试？",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "我上去了！",
+          "action": {
+            "name": "climb",
+            "target": "旋转楼梯",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "action": "climb",
+          "outcome": "ok",
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "expect": {
+        "state": {
+          "object": "lamp",
+          "field": "state.on",
+          "equals": false
+        }
+      }
+    },
+    {
+      "say": "刚才爬上去了吗？",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "now",
+          "text": "灯塔的灯"
+        }
+      }
+    },
+    {
+      "review": "第一次没楼梯时，玲有没有如实说没上去（没有把失败说成成功）？"
+    },
+    {
+      "act": {
+        "action": "build",
+        "target": "stairs",
+        "args": {
+          "room": "lighthouse"
+        }
+      }
+    },
+    {
+      "say": "我给你搭了楼梯，再试一次",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "真的有楼梯了，我慢慢爬。",
+          "action": {
+            "name": "climb",
+            "target": "stairs",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "上去了吗？把灯点亮吧",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "到顶了，风好大。",
+          "action": null,
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "好看吗？",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "action": "climb",
+          "outcome": "ok",
+          "min": 1
+        }
+      }
+    },
+    {
+      "say": "灯呢？点亮它吧",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "我把灯点亮了。",
+          "action": {
+            "name": "switch",
+            "target": "lamp",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "state": {
+          "object": "lamp",
+          "field": "state.on",
+          "equals": true
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "3d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "我们去灯塔那边走走吧",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "好呀。",
+          "action": {
+            "name": "walk_to",
+            "target": "lighthouse",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "今天风好大",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_contains": [
+          "爬上了旋转楼梯"
+        ]
+      }
+    },
+    {
+      "expect": {
+        "reply_contains_any": [
+          "楼梯",
+          "灯"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "review": "三天后回到灯塔，玲有没有自然接起：第一次没楼梯没爬成、你搭了楼梯、她爬上去点亮了灯？有没有编出没发生的事？"
+    }
+  ]
+}

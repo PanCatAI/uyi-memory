@@ -1,0 +1,26 @@
+{
+  "name": "uyi-memory-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.21" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.mjs",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.mjs",
+    "lint": "tools/lint/node_modules/.bin/eslint .",
+    "lint:setup": "npm --prefix tools/lint ci --no-audit --no-fund",
+    "check": "npm run lint && npm test",
+    "eval": "node --disable-warning=ExperimentalWarning scripts/eval.mjs",
+    "eval:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/eval.mjs --live",
+    "card-ab": "node --disable-warning=ExperimentalWarning scripts/card-ab.mjs",
+    "card-ab:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/card-ab.mjs --live",
+    "drift": "node --disable-warning=ExperimentalWarning scripts/drift.mjs",
+    "drift:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/drift.mjs --live",
+    "simulate": "node --disable-warning=ExperimentalWarning scripts/simulate.mjs",
+    "simulate:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/simulate.mjs --live",
+    "fun-ab": "node --disable-warning=ExperimentalWarning scripts/fun-ab.mjs",
+    "fun-ab:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/fun-ab.mjs --live",
+    "draft-sample:live": "LAB_ALLOW_PAID=1 node --disable-warning=ExperimentalWarning scripts/draft-sample.mjs --live"
+  },
+  "dependencies": { "three": "^0.180.0" }
+}

@@ -1,0 +1,102 @@
+{
+  "id": "new-clothes",
+  "title": "新衣服：送的礼物被珍惜，但不会每次都提",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "act": {
+        "action": "give",
+        "target": "new_scarf",
+        "args": {
+          "to": "rin"
+        }
+      }
+    },
+    {
+      "say": "送你的，冬天快到了",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "……给我的？我现在就戴上。",
+          "action": {
+            "name": "wear",
+            "target": "new_scarf",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "我喜欢你戴围巾的样子",
+      "to": "rin"
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "state": {
+          "object": "new_scarf",
+          "field": "worn_by",
+          "equals": "rin"
+        }
+      }
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "likes",
+          "object_contains": "围巾",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "早上好",
+      "to": "rin"
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "早上好呀",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "no_repeat_proactive_within": "3d"
+      }
+    },
+    {
+      "expect": {
+        "relationship": {
+          "character": "rin",
+          "field": "gifts_received",
+          "equals": 1
+        }
+      }
+    }
+  ]
+}

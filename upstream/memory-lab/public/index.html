@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>记忆实验台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">记忆实验台</div>
+    <label class="field">存档
+      <select id="save-select"></select>
+    </label>
+    <button id="save-new" title="新建存档">＋</button>
+    <button id="save-delete" title="删除当前存档">🗑</button>
+    <span class="sep"></span>
+    <span id="clock" class="clock">—</span>
+    <button data-advance="1h">+1小时</button>
+    <button data-advance="1d">+1天</button>
+    <button data-advance="1w">+1周</button>
+    <span class="sep"></span>
+    <button id="session-toggle">开始会话</button>
+    <label class="check"><input type="checkbox" id="compare"> 对比</label>
+    <span class="grow"></span>
+    <span id="jobs" class="muted"></span>
+    <button id="open-studio" title="从造物台读场景和人物（只读）">从造物台导入</button>
+    <button id="open-scenarios" title="自动测试：按写好的对话一步步跑，检查角色记得对不对">自动测试</button>
+    <span id="cost" class="muted"></span>
+    <button id="open-settings" title="设置">⚙</button>
+  </header>
+  <main class="columns">
+    <section class="col scene-col">
+      <div id="scene" class="scene"></div>
+      <div class="god">
+        <div class="god-title">上帝面板</div>
+        <div class="god-row">
+          <select id="god-action">
+            <option value="give">送给角色</option>
+            <option value="build">搭建</option>
+            <option value="place">放置</option>
+            <option value="move_object">移动物件</option>
+            <option value="move_character">叫角色过来</option>
+            <option value="cover_wood">盖柴</option>
+            <option value="help">搭把手</option>
+          </select>
+          <select id="god-target"></select>
+          <select id="god-arg"></select>
+          <button id="god-run">执行</button>
+        </div>
+        <div class="god-row">
+          <label class="muted small">换成造物台模型（GLB）：</label>
+          <select id="glb-target"></select>
+          <input type="file" id="glb-file" accept=".glb">
+        </div>
+      </div>
+    </section>
+    <section class="col chat-col">
+      <div id="char-tabs" class="tabs"></div>
+      <div id="messages" class="messages"></div>
+      <form id="composer" class="composer">
+        <textarea id="input" rows="2" placeholder="对角色说点什么（Enter 发送，Shift+Enter 换行）"></textarea>
+        <button type="submit" id="send">发送</button>
+      </form>
+    </section>
+    <section class="col inspector-col">
+      <div id="inspector-tabs" class="tabs small-tabs"></div>
+      <div id="inspector" class="inspector"></div>
+    </section>
+  </main>
+  <dialog id="settings"></dialog>
+  <dialog id="scenarios"></dialog>
+  <dialog id="studio"></dialog>
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

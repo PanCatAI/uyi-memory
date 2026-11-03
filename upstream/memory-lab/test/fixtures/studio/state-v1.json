@@ -1,0 +1,1444 @@
+{
+ "assets": [
+  {
+   "id": "scene-769405f4",
+   "name": "篝火营地 v2",
+   "kind": "scene",
+   "currentModelId": "9e5bbc8a-6ab6-4617-a79f-f0e9b9fe7729",
+   "createdAt": "2026-10-19T08:41:48.519Z",
+   "layoutSpec": {
+    "name": "林间帐篷营地",
+    "ground": {
+     "width": 8,
+     "depth": 8,
+     "material": "中央为黄褐色夯实泥土地，外围覆盖苔草、低矮植被和零散碎石，边缘露出不规则土石断面。"
+    },
+    "camera": {
+     "position": [
+      0,
+      11.5,
+      12.5
+     ],
+     "target": [
+      0,
+      0.6,
+      0
+     ],
+     "lens": 48
+    },
+    "objects": [
+     {
+      "id": "tent",
+      "name": "帆布帐篷",
+      "category": "hero",
+      "shape": "box",
+      "size": {
+       "w": 2.6,
+       "d": 2.3,
+       "h": 2.3
+      },
+      "instances": [
+       {
+        "x": -0.2,
+        "z": -2.25,
+        "rotation": 0
+       }
+      ],
+      "interaction": "enter",
+      "collision": "open",
+      "light": "none",
+      "assetId": "prop-588684ac"
+     },
+     {
+      "id": "campfire",
+      "name": "石圈篝火",
+      "category": "hero",
+      "shape": "cylinder",
+      "size": {
+       "w": 1.15,
+       "d": 1.15,
+       "h": 0.65
+      },
+      "instances": [
+       {
+        "x": 0,
+        "z": 0.45,
+        "rotation": 0
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "fire",
+      "assetId": "prop-e4b5206a"
+     },
+     {
+      "id": "log-bench",
+      "name": "原木长凳",
+      "category": "prop",
+      "shape": "box",
+      "size": {
+       "w": 1.5,
+       "d": 0.42,
+       "h": 0.42
+      },
+      "instances": [
+       {
+        "x": -2,
+        "z": 1.1,
+        "rotation": 70
+       },
+       {
+        "x": 2,
+        "z": 1.1,
+        "rotation": 290
+       },
+       {
+        "x": 0,
+        "z": 2.35,
+        "rotation": 180
+       }
+      ],
+      "interaction": "seat",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-488a1613"
+     },
+     {
+      "id": "wood-crate",
+      "name": "木箱",
+      "category": "prop",
+      "shape": "box",
+      "size": {
+       "w": 0.7,
+       "d": 0.6,
+       "h": 0.65
+      },
+      "instances": [
+       {
+        "x": 1.65,
+        "z": -1.9,
+        "rotation": 345
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-b7187119"
+     },
+     {
+      "id": "barrel",
+      "name": "木桶",
+      "category": "prop",
+      "shape": "cylinder",
+      "size": {
+       "w": 0.6,
+       "d": 0.6,
+       "h": 0.85
+      },
+      "instances": [
+       {
+        "x": 2.4,
+        "z": -1.65,
+        "rotation": 0
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-bfc1b3b5"
+     },
+     {
+      "id": "lantern",
+      "name": "提灯",
+      "category": "prop",
+      "shape": "cylinder",
+      "size": {
+       "w": 0.2,
+       "d": 0.2,
+       "h": 0.36
+      },
+      "instances": [
+       {
+        "x": 1.65,
+        "z": -1.9,
+        "rotation": 0
+       }
+      ],
+      "interaction": "pickup",
+      "collision": "none",
+      "light": "lantern",
+      "assetId": "prop-0fc34a49"
+     },
+     {
+      "id": "pine",
+      "name": "松树",
+      "category": "filler",
+      "shape": "cone",
+      "size": {
+       "w": 1.8,
+       "d": 1.8,
+       "h": 4.3
+      },
+      "instances": [
+       {
+        "x": 3.05,
+        "z": -2.85,
+        "rotation": 15
+       },
+       {
+        "x": -3.05,
+        "z": 1.95,
+        "rotation": 335
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-ccce0495"
+     },
+     {
+      "id": "boulder",
+      "name": "岩石",
+      "category": "filler",
+      "shape": "sphere",
+      "size": {
+       "w": 1.05,
+       "d": 0.85,
+       "h": 0.75
+      },
+      "instances": [
+       {
+        "x": -1.65,
+        "z": 3.05,
+        "rotation": 20
+       },
+       {
+        "x": 1.65,
+        "z": 3.05,
+        "rotation": 325
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-c11b5f4e"
+     },
+     {
+      "id": "small-rock",
+      "name": "外围小岩块",
+      "category": "filler",
+      "shape": "sphere",
+      "size": {
+       "w": 0.45,
+       "d": 0.38,
+       "h": 0.28
+      },
+      "instances": [
+       {
+        "x": -2.8,
+        "z": -1.95,
+        "rotation": 20
+       },
+       {
+        "x": 2.05,
+        "z": -2.65,
+        "rotation": 65
+       },
+       {
+        "x": -3.15,
+        "z": 3.1,
+        "rotation": 10
+       },
+       {
+        "x": 2.5,
+        "z": 3.15,
+        "rotation": 40
+       }
+      ],
+      "interaction": "static",
+      "collision": "box",
+      "light": "none",
+      "assetId": "prop-0fe30a84"
+     },
+     {
+      "id": "shrub",
+      "name": "阔叶灌木",
+      "category": "filler",
+      "shape": "sphere",
+      "size": {
+       "w": 0.65,
+       "d": 0.55,
+       "h": 0.4
+      },
+      "instances": [
+       {
+        "x": -3.35,
+        "z": -1.75,
+        "rotation": 15
+       },
+       {
+        "x": -3.35,
+        "z": -2.4,
+        "rotation": 80
+       },
+       {
+        "x": 3.35,
+        "z": -1.35,
+        "rotation": 25
+       },
+       {
+        "x": 2.85,
+        "z": -0.95,
+        "rotation": 120
+       },
+       {
+        "x": -2.65,
+        "z": 3.45,
+        "rotation": 60
+       },
+       {
+        "x": -2.2,
+        "z": 2.6,
+        "rotation": 100
+       },
+       {
+        "x": -1.05,
+        "z": 3.35,
+        "rotation": 30
+       },
+       {
+        "x": 1.1,
+        "z": 3.6,
+        "rotation": 50
+       },
+       {
+        "x": 2.7,
+        "z": 2.55,
+        "rotation": 130
+       },
+       {
+        "x": 3.25,
+        "z": 2.9,
+        "rotation": 10
+       },
+       {
+        "x": 2.048,
+        "z": -2.79,
+        "rotation": 257
+       },
+       {
+        "x": -2.846,
+        "z": 2.148,
+        "rotation": 296
+       },
+       {
+        "x": -2.85,
+        "z": -1.315,
+        "rotation": 133
+       },
+       {
+        "x": -2.375,
+        "z": -0.915,
+        "rotation": 88
+       },
+       {
+        "x": -2.602,
+        "z": -2.245,
+        "rotation": 349
+       },
+       {
+        "x": 3.479,
+        "z": 0.796,
+        "rotation": 221
+       },
+       {
+        "x": -3.283,
+        "z": 0.615,
+        "rotation": 183
+       },
+       {
+        "x": 3.51,
+        "z": -2.112,
+        "rotation": 341
+       },
+       {
+        "x": 2.007,
+        "z": 3.596,
+        "rotation": 138
+       },
+       {
+        "x": 1.911,
+        "z": -3.503,
+        "rotation": 291
+       },
+       {
+        "x": 2.336,
+        "z": 0.177,
+        "rotation": 82
+       },
+       {
+        "x": -3.602,
+        "z": 1.644,
+        "rotation": 224
+       },
+       {
+        "x": 3.08,
+        "z": -0.382,
+        "rotation": 60
+       },
+       {
+        "x": 1.952,
+        "z": 2.899,
+        "rotation": 208
+       },
+       {
+        "x": -1.288,
+        "z": 0.115,
+        "rotation": 58
+       },
+       {
+        "x": 2.458,
+        "z": 1.966,
+        "rotation": 114
+       },
+       {
+        "x": -3.456,
+        "z": 2.572,
+        "rotation": 139
+       },
+       {
+        "x": -3.604,
+        "z": -3.568,
+        "rotation": 337
+       }
+      ],
+      "interaction": "static",
+      "collision": "none",
+      "light": "none",
+      "assetId": "prop-9f257f82"
+     },
+     {
+      "id": "grass-flowers",
+      "name": "草丛与细小野花",
+      "category": "filler",
+      "shape": "box",
+      "size": {
+       "w": 0.5,
+       "d": 0.4,
+       "h": 0.18
+      },
+      "instances": [
+       {
+        "x": -3.45,
+        "z": -0.8,
+        "rotation": 10
+       },
+       {
+        "x": -3.5,
+        "z": 0.15,
+        "rotation": 30
+       },
+       {
+        "x": -2.9,
+        "z": -3.2,
+        "rotation": 65
+       },
+       {
+        "x": -1.95,
+        "z": -3.65,
+        "rotation": 10
+       },
+       {
+        "x": 0.7,
+        "z": -3.65,
+        "rotation": 90
+       },
+       {
+        "x": 1.65,
+        "z": -3.45,
+        "rotation": 35
+       },
+       {
+        "x": 3.45,
+        "z": -0.35,
+        "rotation": 20
+       },
+       {
+        "x": 3.5,
+        "z": 0.65,
+        "rotation": 75
+       },
+       {
+        "x": 3.35,
+        "z": 1.65,
+        "rotation": 45
+       },
+       {
+        "x": -2.25,
+        "z": 3.7,
+        "rotation": 15
+       },
+       {
+        "x": -0.9,
+        "z": 2.7,
+        "rotation": 80
+       },
+       {
+        "x": 0.95,
+        "z": 2.6,
+        "rotation": 120
+       },
+       {
+        "x": 2.4,
+        "z": 3.7,
+        "rotation": 55
+       },
+       {
+        "x": -3.488,
+        "z": 1.281,
+        "rotation": 311
+       },
+       {
+        "x": 1.523,
+        "z": 2.68,
+        "rotation": 156
+       },
+       {
+        "x": -1.273,
+        "z": 0.088,
+        "rotation": 57
+       },
+       {
+        "x": -2.406,
+        "z": -2.256,
+        "rotation": 317
+       },
+       {
+        "x": 1.514,
+        "z": 3.662,
+        "rotation": 114
+       },
+       {
+        "x": 1.568,
+        "z": -0.561,
+        "rotation": 53
+       },
+       {
+        "x": -2.548,
+        "z": -2.781,
+        "rotation": 48
+       },
+       {
+        "x": -0.591,
+        "z": 1.539,
+        "rotation": 19
+       },
+       {
+        "x": 2.094,
+        "z": -2.786,
+        "rotation": 327
+       },
+       {
+        "x": 2.302,
+        "z": -0.135,
+        "rotation": 137
+       },
+       {
+        "x": -2.953,
+        "z": -2.678,
+        "rotation": 134
+       },
+       {
+        "x": 1.055,
+        "z": 0.046,
+        "rotation": 78
+       },
+       {
+        "x": -2.336,
+        "z": 2.059,
+        "rotation": 276
+       },
+       {
+        "x": -3.192,
+        "z": 0.115,
+        "rotation": 321
+       },
+       {
+        "x": 1.881,
+        "z": 0.265,
+        "rotation": 202
+       },
+       {
+        "x": 3.184,
+        "z": 2.194,
+        "rotation": 11
+       },
+       {
+        "x": 2.49,
+        "z": 1.997,
+        "rotation": 111
+       },
+       {
+        "x": -1.684,
+        "z": 3.304,
+        "rotation": 299
+       },
+       {
+        "x": 1.814,
+        "z": 2.14,
+        "rotation": 128
+       },
+       {
+        "x": -2.424,
+        "z": -1,
+        "rotation": 178
+       },
+       {
+        "x": 2.852,
+        "z": 3.439,
+        "rotation": 228
+       },
+       {
+        "x": 3.475,
+        "z": -2.85,
+        "rotation": 102
+       },
+       {
+        "x": -1.531,
+        "z": -0.133,
+        "rotation": 179
+       },
+       {
+        "x": 3.332,
+        "z": 2.462,
+        "rotation": 302
+       },
+       {
+        "x": 2.647,
+        "z": 1.743,
+        "rotation": 98
+       },
+       {
+        "x": -3.174,
+        "z": 3.324,
+        "rotation": 229
+       },
+       {
+        "x": -2.439,
+        "z": -0.593,
+        "rotation": 301
+       },
+       {
+        "x": 3.161,
+        "z": -2.635,
+        "rotation": 59
+       },
+       {
+        "x": -3.385,
+        "z": 1.826,
+        "rotation": 261
+       },
+       {
+        "x": -3.058,
+        "z": -0.937,
+        "rotation": 274
+       },
+       {
+        "x": -2.721,
+        "z": 2.713,
+        "rotation": 179
+       },
+       {
+        "x": -1.792,
+        "z": 2.882,
+        "rotation": 98
+       },
+       {
+        "x": 3.407,
+        "z": -3.268,
+        "rotation": 305
+       },
+       {
+        "x": 2.818,
+        "z": 3.089,
+        "rotation": 189
+       },
+       {
+        "x": 2.53,
+        "z": 3.179,
+        "rotation": 216
+       }
+      ],
+      "interaction": "static",
+      "collision": "none",
+      "light": "none",
+      "assetId": "prop-35b5e85b"
+     },
+     {
+      "id": "pebbles",
+      "name": "地面碎石",
+      "category": "filler",
+      "shape": "sphere",
+      "size": {
+       "w": 0.12,
+       "d": 0.1,
+       "h": 0.06
+      },
+      "instances": [
+       {
+        "x": -2.3,
+        "z": -0.65,
+        "rotation": 10
+       },
+       {
+        "x": -1.75,
+        "z": -1.05,
+        "rotation": 30
+       },
+       {
+        "x": -0.75,
+        "z": -0.75,
+        "rotation": 65
+       },
+       {
+        "x": 0.65,
+        "z": -0.8,
+        "rotation": 40
+       },
+       {
+        "x": 2.6,
+        "z": 0.1,
+        "rotation": 15
+       },
+       {
+        "x": -2.15,
+        "z": 1.65,
+        "rotation": 95
+       },
+       {
+        "x": 2.1,
+        "z": 1.7,
+        "rotation": 35
+       },
+       {
+        "x": 1.75,
+        "z": 2.2,
+        "rotation": 20
+       },
+       {
+        "x": -0.5,
+        "z": 2.9,
+        "rotation": 70
+       },
+       {
+        "x": 0.55,
+        "z": 3.15,
+        "rotation": 80
+       },
+       {
+        "x": -0.6,
+        "z": 3.6,
+        "rotation": 10
+       },
+       {
+        "x": 0.25,
+        "z": 3.8,
+        "rotation": 55
+       }
+      ],
+      "interaction": "static",
+      "collision": "none",
+      "light": "none",
+      "assetId": "prop-5e3d6fee"
+     }
+    ],
+    "paths": [
+     {
+      "id": "entry-path",
+      "name": "南侧泥土入口",
+      "kind": "path",
+      "width": 1.15,
+      "points": [
+       [
+        0,
+        4
+       ],
+       [
+        0,
+        3.5
+       ],
+       [
+        -0.05,
+        3
+       ],
+       [
+        0,
+        2.55
+       ]
+      ]
+     }
+    ],
+    "zones": [
+     {
+      "id": "camp-clearing",
+      "name": "营地主要活动空地",
+      "kind": "walkable",
+      "polygon": [
+       [
+        -2.3,
+        -1.05
+       ],
+       [
+        1.2,
+        -1.05
+       ],
+       [
+        2.05,
+        -0.7
+       ],
+       [
+        2.65,
+        0.7
+       ],
+       [
+        2.3,
+        2.35
+       ],
+       [
+        0.8,
+        2.65
+       ],
+       [
+        -0.8,
+        2.65
+       ],
+       [
+        -2.3,
+        2.2
+       ],
+       [
+        -2.6,
+        0.1
+       ]
+      ]
+     },
+     {
+      "id": "entrance-clearance",
+      "name": "南侧入口保留通道",
+      "kind": "noplace",
+      "polygon": [
+       [
+        -0.62,
+        4
+       ],
+       [
+        0.62,
+        4
+       ],
+       [
+        0.62,
+        2.55
+       ],
+       [
+        -0.62,
+        2.55
+       ]
+      ]
+     },
+     {
+      "id": "tent-access",
+      "name": "帐篷门前通道",
+      "kind": "noplace",
+      "polygon": [
+       [
+        -0.7,
+        -1.15
+       ],
+       [
+        0.3,
+        -1.15
+       ],
+       [
+        0.3,
+        -0.35
+       ],
+       [
+        -0.7,
+        -0.35
+       ]
+      ]
+     }
+    ],
+    "sourceInputId": "3b889eca-c244-459f-b981-66fa120bbb11",
+    "updatedAt": "2026-10-19T12:21:37.677Z"
+   },
+   "layout": {
+    "environment": "mesh",
+    "lighting": "dusk",
+    "envModelId": "06261bc4-af85-43c9-9f60-1648c0049ca8",
+    "camera": {
+     "position": [
+      15.07208959780688,
+      22.158101159834608,
+      37.00827873356926
+     ],
+     "target": [
+      1.4403822562828403,
+      0.7188002371110992,
+      1.3090137995211493
+     ]
+    },
+    "updatedAt": "2026-10-19T13:00:00.000Z",
+    "items": [
+     {
+      "id": "campfire-1",
+      "modelId": "6a0b2390-3b48-4a7e-b85f-9fab83e82a70",
+      "name": "石圈篝火",
+      "specObjectId": "campfire",
+      "interaction": "static",
+      "collision": "box",
+      "light": "fire",
+      "position": [
+       0,
+       0.37,
+       0.45
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "scale": 1.013597246335336,
+      "clip": -1
+     },
+     {
+      "id": "tent-1",
+      "modelId": "485a78db-dfbc-4afa-85d4-46c237413218",
+      "name": "帆布帐篷",
+      "specObjectId": "tent",
+      "interaction": "enter",
+      "collision": "open",
+      "position": [
+       -0.2,
+       1.1742521220977569,
+       -2.25
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "scale": 2.9589380408555184,
+      "clip": -1
+     },
+     {
+      "id": "log-bench-1",
+      "modelId": "3db81c9e-a68c-4938-9ed2-7ad02b97857d",
+      "name": "原木长凳",
+      "specObjectId": "log-bench",
+      "interaction": "seat",
+      "collision": "box",
+      "position": [
+       -2,
+       0.24028163389845292,
+       1.1
+      ],
+      "rotation": [
+       -3.141592653589793,
+       0.34906585039886595,
+       -3.141592653589793
+      ],
+      "scale": 1.3936363051117475,
+      "clip": -1
+     },
+     {
+      "id": "log-bench-2",
+      "modelId": "3db81c9e-a68c-4938-9ed2-7ad02b97857d",
+      "name": "原木长凳",
+      "specObjectId": "log-bench",
+      "interaction": "seat",
+      "collision": "box",
+      "position": [
+       2,
+       0.21405132190776222,
+       1.1
+      ],
+      "rotation": [
+       0,
+       0.3490658503988652,
+       0
+      ],
+      "scale": 1.3936363051117475,
+      "clip": -1
+     },
+     {
+      "id": "wood-crate-1",
+      "modelId": "a9ac7e7d-8872-46c7-8b79-9638f2411ec2",
+      "name": "木箱",
+      "specObjectId": "wood-crate",
+      "interaction": "static",
+      "collision": "box",
+      "position": [
+       1.65,
+       0.33602884486026496,
+       -1.9
+      ],
+      "rotation": [
+       0,
+       -0.2617993877991494,
+       0
+      ],
+      "scale": 0.7908333392255009,
+      "clip": -1
+     },
+     {
+      "id": "barrel-1",
+      "modelId": "19a57f6d-5bea-433e-86d5-4ed88ef2dbf0",
+      "name": "木桶",
+      "specObjectId": "barrel",
+      "interaction": "static",
+      "collision": "box",
+      "position": [
+       2.4,
+       0.4696227131606323,
+       -1.65
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "scale": 0.85,
+      "clip": -1
+     },
+     {
+      "id": "lantern-1",
+      "modelId": "cbd96602-e7a3-44e8-bb20-48b60ba39b55",
+      "name": "提灯",
+      "specObjectId": "lantern",
+      "interaction": "pickup",
+      "collision": "none",
+      "light": "lantern",
+      "position": [
+       1.65,
+       0.19053973632925703,
+       -1.9
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "scale": 0.36,
+      "clip": -1
+     },
+     {
+      "id": "pine-1",
+      "modelId": "619b1021-49c0-4ece-ac1e-499545a80bfc",
+      "name": "松树",
+      "specObjectId": "pine",
+      "interaction": "static",
+      "collision": "trunk",
+      "position": [
+       3.05,
+       0.017324960125516986,
+       -2.85
+      ],
+      "rotation": [
+       -3.141592653589793,
+       0.9984113476573023,
+       -3.141592653589793
+      ],
+      "scale": 0.9662998196529224,
+      "clip": -1
+     },
+     {
+      "id": "boulder-1",
+      "modelId": "b9040023-8b4d-42d8-9ab4-24ac75e03b38",
+      "name": "岩石",
+      "specObjectId": "boulder",
+      "interaction": "static",
+      "collision": "box",
+      "position": [
+       -1.65,
+       0.011347406261976223,
+       3.05
+      ],
+      "rotation": [
+       -3.141592653589793,
+       -0.47899164381030607,
+       -3.141592653589793
+      ],
+      "scale": 1.038667961396277,
+      "clip": -1
+     },
+     {
+      "id": "small-rock-1",
+      "modelId": "cc3381da-3379-4c34-b4d0-0615fae033ea",
+      "name": "外围小岩块",
+      "specObjectId": "small-rock",
+      "interaction": "static",
+      "collision": "box",
+      "position": [
+       -2.8,
+       0.007508338396203462,
+       -1.95
+      ],
+      "rotation": [
+       -3.141592653589793,
+       -1.5471934441201018,
+       -3.141592653589793
+      ],
+      "scale": 0.9803507623169572,
+      "clip": -1
+     },
+     {
+      "id": "shrub-1",
+      "modelId": "e57560a2-21c9-4062-b671-226141e2c9dd",
+      "name": "阔叶灌木",
+      "specObjectId": "shrub",
+      "interaction": "static",
+      "collision": "none",
+      "position": [
+       -3.35,
+       0.0018901587294470057,
+       -1.75
+      ],
+      "rotation": [
+       0,
+       -1.0810472684950974,
+       0
+      ],
+      "scale": 0.891313866651617,
+      "clip": -1
+     },
+     {
+      "id": "grass-flowers-1",
+      "modelId": "cdab82ca-96d1-42ed-a72a-de1047a037dd",
+      "name": "草丛与细小野花",
+      "specObjectId": "grass-flowers",
+      "interaction": "static",
+      "collision": "none",
+      "position": [
+       -3.45,
+       0.03005144397144109,
+       -0.8
+      ],
+      "rotation": [
+       -3.141592653589793,
+       -1.5400522329228454,
+       -3.141592653589793
+      ],
+      "scale": 0.9818274837266654,
+      "clip": -1
+     },
+     {
+      "id": "pebbles-1",
+      "modelId": "23cffd21-edd4-4704-a7e5-7a317f57437c",
+      "name": "地面碎石",
+      "specObjectId": "pebbles",
+      "interaction": "static",
+      "collision": "none",
+      "position": [
+       -2.3,
+       0.007713962855422349,
+       -0.65
+      ],
+      "rotation": [
+       0,
+       -0.9936414403543739,
+       0
+      ],
+      "scale": 1.0166557291150093,
+      "clip": -1
+     },
+     {
+      "id": "c3054fef-10ec-4261-9002-c70ba876d935",
+      "modelId": "afd696a9-faa3-4cb8-8947-cf97b5002536",
+      "name": "银羽 · 少女剑士",
+      "position": [
+       0,
+       -0.0029939696186094267,
+       1.75
+      ],
+      "rotation": [
+       0,
+       3.1416,
+       0
+      ],
+      "scale": 0.9999997837670204,
+      "clip": "lib:890fce05-c77:2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "scene-17be2e49",
+   "name": "P9 演示",
+   "kind": "scene",
+   "currentModelId": null,
+   "createdAt": "2026-10-23T12:39:13.954Z",
+   "layout": {
+    "environment": "ground",
+    "lighting": "default",
+    "envModelId": null,
+    "items": [],
+    "updatedAt": "2026-10-23T12:39:13.954Z"
+   }
+  },
+  {
+   "id": "char-1f96a160",
+   "name": "银羽 · 少女剑士",
+   "kind": "character",
+   "currentModelId": "afd696a9-faa3-4cb8-8947-cf97b5002536",
+   "createdAt": "2026-10-18T12:43:23.374Z"
+  },
+  {
+   "id": "char-scout",
+   "name": "岚 · 探索者",
+   "kind": "character",
+   "currentModelId": "c2c348e2-d2d0-4a8b-ac54-c0517261b2c9",
+   "createdAt": "2026-10-14T13:36:15.838Z"
+  }
+ ],
+ "models": [
+  {
+   "id": "06261bc4-af85-43c9-9f60-1648c0049ca8",
+   "name": "营地地面 8.6m",
+   "assetId": "prop-2b4eef96",
+   "file": "06261bc4-af85-43c9-9f60-1648c0049ca8.glb",
+   "size": 11541872
+  },
+  {
+   "id": "cdab82ca-96d1-42ed-a72a-de1047a037dd",
+   "name": "Tripo自然母型 · grassflowers · 尺寸校正",
+   "assetId": "prop-35b5e85b",
+   "file": "cdab82ca-96d1-42ed-a72a-de1047a037dd.glb",
+   "size": 5800376
+  },
+  {
+   "id": "23cffd21-edd4-4704-a7e5-7a317f57437c",
+   "name": "Tripo自然母型 · pebbles · 尺寸校正",
+   "assetId": "prop-5e3d6fee",
+   "file": "23cffd21-edd4-4704-a7e5-7a317f57437c.glb",
+   "size": 8383588
+  },
+  {
+   "id": "e57560a2-21c9-4062-b671-226141e2c9dd",
+   "name": "Tripo自然母型 · shrub · 尺寸校正",
+   "assetId": "prop-9f257f82",
+   "file": "e57560a2-21c9-4062-b671-226141e2c9dd.glb",
+   "size": 6197304
+  },
+  {
+   "id": "cc3381da-3379-4c34-b4d0-0615fae033ea",
+   "name": "Tripo自然母型 · mossrock · 尺寸校正",
+   "assetId": "prop-0fe30a84",
+   "file": "cc3381da-3379-4c34-b4d0-0615fae033ea.glb",
+   "size": 8436908
+  },
+  {
+   "id": "b9040023-8b4d-42d8-9ab4-24ac75e03b38",
+   "name": "Tripo自然母型 · boulder · 尺寸校正",
+   "assetId": "prop-c11b5f4e",
+   "file": "b9040023-8b4d-42d8-9ab4-24ac75e03b38.glb",
+   "size": 8624964
+  },
+  {
+   "id": "619b1021-49c0-4ece-ac1e-499545a80bfc",
+   "name": "Tripo自然母型 · pine · 尺寸校正",
+   "assetId": "prop-ccce0495",
+   "file": "619b1021-49c0-4ece-ac1e-499545a80bfc.glb",
+   "size": 7584144
+  },
+  {
+   "id": "6a0b2390-3b48-4a7e-b85f-9fab83e82a70",
+   "name": "石圈篝火 · 营地调色板",
+   "assetId": "prop-e4b5206a",
+   "file": "6a0b2390-3b48-4a7e-b85f-9fab83e82a70.glb",
+   "size": 1095884
+  },
+  {
+   "id": "485a78db-dfbc-4afa-85d4-46c237413218",
+   "name": "帆布帐篷 · 营地调色板",
+   "assetId": "prop-588684ac",
+   "file": "485a78db-dfbc-4afa-85d4-46c237413218.glb",
+   "size": 939124
+  },
+  {
+   "id": "3db81c9e-a68c-4938-9ed2-7ad02b97857d",
+   "name": "原木长凳 · 营地调色板",
+   "assetId": "prop-488a1613",
+   "file": "3db81c9e-a68c-4938-9ed2-7ad02b97857d.glb",
+   "size": 392192
+  },
+  {
+   "id": "a9ac7e7d-8872-46c7-8b79-9638f2411ec2",
+   "name": "木箱 · 营地调色板",
+   "assetId": "prop-b7187119",
+   "file": "a9ac7e7d-8872-46c7-8b79-9638f2411ec2.glb",
+   "size": 274604
+  },
+  {
+   "id": "19a57f6d-5bea-433e-86d5-4ed88ef2dbf0",
+   "name": "木桶 · 营地调色板",
+   "assetId": "prop-bfc1b3b5",
+   "file": "19a57f6d-5bea-433e-86d5-4ed88ef2dbf0.glb",
+   "size": 314116
+  },
+  {
+   "id": "cbd96602-e7a3-44e8-bb20-48b60ba39b55",
+   "name": "提灯 · 营地调色板",
+   "assetId": "prop-0fc34a49",
+   "file": "cbd96602-e7a3-44e8-bb20-48b60ba39b55.glb",
+   "size": 143372
+  },
+  {
+   "id": "afd696a9-faa3-4cb8-8947-cf97b5002536",
+   "name": "银羽 · Mixamo 修正版",
+   "assetId": "char-1f96a160",
+   "file": "afd696a9-faa3-4cb8-8947-cf97b5002536.glb",
+   "size": 10741640
+  },
+  {
+   "id": "c2c348e2-d2d0-4a8b-ac54-c0517261b2c9",
+   "name": "岚 · 探索者 · 动作",
+   "assetId": "char-scout",
+   "file": "c2c348e2-d2d0-4a8b-ac54-c0517261b2c9.glb",
+   "size": 10358420
+  }
+ ],
+ "animations": [
+  {
+   "id": "68048601-673",
+   "name": "Quaternius 通用动作 2",
+   "file": "68048601-673.glb",
+   "format": "glb",
+   "clips": [
+    "Chest_Open",
+    "ClimbUp_1m_RM",
+    "Consume",
+    "Farm_Harvest",
+    "Farm_PlantSeed",
+    "Farm_Watering",
+    "Hit_Knockback",
+    "Hit_Knockback_RM",
+    "Idle_FoldArms_Loop",
+    "Idle_Lantern_Loop",
+    "Idle_No_Loop",
+    "Idle_Rail_Call",
+    "Idle_Rail_Loop",
+    "Idle_Shield_Break",
+    "Idle_Shield_Loop",
+    "Idle_TalkingPhone_Loop",
+    "LayToIdle",
+    "Melee_Hook",
+    "Melee_Hook_Rec",
+    "NinjaJump_Idle_Loop",
+    "NinjaJump_Land",
+    "NinjaJump_Start",
+    "OverhandThrow",
+    "Shield_Dash_RM",
+    "Shield_OneShot",
+    "Slide_Exit",
+    "Slide_Loop",
+    "Slide_Start",
+    "Sword_Block",
+    "Sword_Dash_RM",
+    "Sword_Regular_A",
+    "Sword_Regular_A_Rec",
+    "Sword_Regular_B",
+    "Sword_Regular_B_Rec",
+    "Sword_Regular_C",
+    "Sword_Regular_Combo",
+    "TreeChopping_Loop",
+    "Walk_Carry_Loop",
+    "Yes",
+    "Zombie_Idle_Loop",
+    "Zombie_Scratch",
+    "Zombie_Walk_Fwd_Loop"
+   ],
+   "size": 8041020,
+   "sha256": "dc44460df7cb40e31cc35f75c607402946de47827ef5d481f6b4cfb6ecfe4f10",
+   "createdAt": "2026-10-22T09:50:22.037Z",
+   "source": "Quaternius Universal Animation Library 2（CC0）",
+   "seedKey": "UAL2",
+   "license": "CC0",
+   "attribution": "Quaternius"
+  },
+  {
+   "id": "ae3ef523-b90",
+   "name": "browser-wave",
+   "file": "ae3ef523-b90.fbx",
+   "format": "fbx",
+   "clips": [
+    "Browser Wave"
+   ],
+   "size": 55,
+   "sha256": "af9fbe5761ac0862eafbf63f94d589abb668c76ae04c8b7ac0e9d5b1d2dc37ad",
+   "createdAt": "2026-10-22T09:51:49.446Z",
+   "source": "import",
+   "license": "Mixamo-自用"
+  },
+  {
+   "id": "cac4d5b9-820",
+   "name": "Quaternius 通用动作",
+   "file": "cac4d5b9-820.glb",
+   "format": "glb",
+   "clips": [
+    "A_TPose",
+    "Crouch_Fwd_Loop",
+    "Crouch_Idle_Loop",
+    "Dance_Loop",
+    "Death01",
+    "Driving_Loop",
+    "Fixing_Kneeling",
+    "Hit_Chest",
+    "Hit_Head",
+    "Idle_Loop",
+    "Idle_Talking_Loop",
+    "Idle_Torch_Loop",
+    "Interact",
+    "Jog_Fwd_Loop",
+    "Jump_Land",
+    "Jump_Loop",
+    "Jump_Start",
+    "PickUp_Table",
+    "Pistol_Aim_Down",
+    "Pistol_Aim_Neutral",
+    "Pistol_Aim_Up",
+    "Pistol_Idle_Loop",
+    "Pistol_Reload",
+    "Pistol_Shoot",
+    "Punch_Cross",
+    "Punch_Enter",
+    "Punch_Jab",
+    "Push_Loop",
+    "Roll",
+    "Roll_RM",
+    "Sitting_Enter",
+    "Sitting_Exit",
+    "Sitting_Idle_Loop",
+    "Sitting_Talking_Loop",
+    "Spell_Simple_Enter",
+    "Spell_Simple_Exit",
+    "Spell_Simple_Idle_Loop",
+    "Spell_Simple_Shoot",
+    "Sprint_Loop",
+    "Swim_Fwd_Loop",
+    "Swim_Idle_Loop",
+    "Sword_Attack",
+    "Sword_Attack_RM",
+    "Sword_Idle",
+    "Walk_Formal_Loop",
+    "Walk_Loop"
+   ],
+   "size": 6671104,
+   "createdAt": "2026-10-16T13:18:04.324Z",
+   "source": "Quaternius Universal Animation Library（CC0）",
+   "seedKey": "UAL",
+   "license": "CC0",
+   "attribution": "Quaternius"
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "island",
+  "name": "灯塔小岛",
+  "note": "内置的方块场景，不依赖造物台。坐标单位米，y 向上。rooms 的 box 是 [minX, minZ, maxX, maxZ]。",
+  "ground": { "size": 30, "color": "#c9b98f" },
+  "rooms": [
+    { "id": "cabin", "name": "小屋", "box": [-10, -5, -2, 3], "color": "#a7836a" },
+    { "id": "lighthouse", "name": "灯塔", "box": [3, -8, 9, -2], "color": "#e8e4dc" },
+    { "id": "beach", "name": "海滩", "box": [-6, 6, 10, 13], "color": "#e9d9a8" }
+  ],
+  "objects": [
+    { "id": "red_cup", "name": "红杯子", "room": "cabin", "pos": [-6, 0.9, -1], "shape": "cylinder", "size": [0.12, 0.2], "color": "#d23a3a", "tags": ["portable", "cleanable"] },
+    { "id": "table", "name": "木桌", "room": "cabin", "pos": [-6, 0.4, -1], "shape": "box", "size": [1.6, 0.8, 1], "color": "#8a6242", "tags": ["surface"] },
+    { "id": "window", "name": "窗户", "room": "cabin", "pos": [-9.8, 1.5, 0], "shape": "box", "size": [0.1, 1, 1.4], "color": "#a9d4ef", "tags": [] },
+    { "id": "wardrobe", "name": "衣柜", "room": "cabin", "pos": [-3, 1, -4.3], "shape": "box", "size": [1.2, 2, 0.6], "color": "#6e4f37", "tags": ["surface"] },
+    { "id": "chair", "name": "椅子", "room": "cabin", "pos": [-5, 0.45, 0.2], "shape": "box", "size": [0.5, 0.9, 0.5], "color": "#8a6242", "tags": ["sittable"] },
+    { "id": "lamp", "name": "灯塔的灯", "room": "lighthouse", "pos": [6, 7.5, -5], "shape": "sphere", "size": [0.6], "color": "#fff2a8", "tags": ["switchable", "high"], "state": { "on": false } },
+    { "id": "lighthouse_door", "name": "灯塔门", "room": "lighthouse", "pos": [6, 1, -2.1], "shape": "box", "size": [1, 2, 0.1], "color": "#5a6b7a", "tags": [] },
+    { "id": "bench", "name": "长椅", "room": "beach", "pos": [0, 0.4, 8], "shape": "box", "size": [2, 0.5, 0.6], "color": "#7b5a3c", "tags": ["sittable"] },
+    { "id": "shell", "name": "贝壳", "room": "beach", "pos": [3, 0.05, 10], "shape": "sphere", "size": [0.08], "color": "#f4d6d0", "tags": ["portable", "cleanable"] }
+  ],
+  "palette": [
+    { "id": "stairs", "name": "旋转楼梯", "shape": "cylinder", "size": [1.2, 7], "color": "#9a8f80", "tags": ["climbable"], "rooms": ["lighthouse"], "pos": [6, 3.5, -5] },
+    { "id": "new_scarf", "name": "新围巾", "shape": "box", "size": [0.4, 0.05, 0.15], "color": "#4a7bd0", "tags": ["portable", "wearable"] },
+    { "id": "flower", "name": "野花", "shape": "sphere", "size": [0.1], "color": "#e889c4", "tags": ["portable"] }
+  ],
+  "characters": [
+    { "id": "rin", "name": "玲", "card": "characters/rin.md", "room": "cabin", "pos": [-4, 0, 1], "color": "#7fb3c8" },
+    { "id": "qiao", "name": "阿乔", "card": "characters/qiao.md", "room": "beach", "pos": [5, 0, 9], "color": "#c88f5a" }
+  ],
+  "actions": {
+    "walk_to":  { "desc": "走到某个房间或物件旁边", "target": "room|object" },
+    "pick_up":  { "desc": "拿起同一房间里一个能拿的东西", "target": "object", "needs": ["same_room", "tag:portable", "hands_free"] },
+    "put_down": { "desc": "把手里的东西放到同一房间的某个台面上", "target": "object", "needs": ["same_room", "tag:surface", "holding"] },
+    "give":     { "desc": "把手里的东西递给用户", "target": "user", "needs": ["holding", "user_present"] },
+    "wear":     { "desc": "穿戴手里的东西", "target": "object", "needs": ["held_target", "tag:wearable"] },
+    "clean":    { "desc": "擦干净同一房间里的东西", "target": "object", "needs": ["same_room", "tag:cleanable"] },
+    "sit":      { "desc": "坐到同一房间的座位上", "target": "object", "needs": ["same_room", "tag:sittable"] },
+    "climb":    { "desc": "爬上楼梯", "target": "object", "needs": ["same_room", "tag:climbable"] },
+    "switch":   { "desc": "开关灯", "target": "object", "needs": ["same_room", "tag:switchable", "reachable"] },
+    "look_at":  { "desc": "看向某样东西或用户", "target": "object|user|room" },
+    "wave":     { "desc": "挥手", "target": "none" },
+    "idle":     { "desc": "发呆、休息", "target": "none" }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "note": "3.0 G3：共同活动（docs/PLAN-3.0.md 附录 C.7）。done_when：user_said_any [词…] / model（她回复里 practice.step_done）/ action 动作名。 模型没填 practice 时的退路：start_any（这一轮他说的或她说的里有这些词，又能开始，就算开始了）；model 步骤的 say_any（她这句里有这些词就算这一步做到了）。",
+  "world_words": [
+    "星",
+    "铜钩",
+    "守夜",
+    "松子",
+    "烤"
+  ],
+  "practices": [
+    {
+      "id": "stars",
+      "name": "认星",
+      "start_when": {
+        "sky_in": [
+          "夜里"
+        ],
+        "weather_in": [
+          "晴"
+        ]
+      },
+      "max_turns": 6,
+      "steps": [
+        {
+          "goal": "问他想不想学认星",
+          "done_when": {
+            "user_said_any": [
+              "想",
+              "好",
+              "行",
+              "来",
+              "教"
+            ]
+          }
+        },
+        {
+          "goal": "给他一个提示（北边、勺子形的那几颗），让他自己找，别直接说",
+          "done_when": "model",
+          "say_any": [
+            "北",
+            "勺",
+            "钩"
+          ]
+        },
+        {
+          "goal": "告诉他这颗叫铜钩星，是师父教的叫法，书上叫别的",
+          "done_when": "model",
+          "say_any": [
+            "铜钩"
+          ]
+        }
+      ],
+      "end_effects": null,
+      "memory_template": "我们一起认了铜钩星，是{user}自己找到的",
+      "start_any": [
+        "认星",
+        "星星",
+        "铜钩"
+      ]
+    },
+    {
+      "id": "watch",
+      "name": "守夜",
+      "start_when": {
+        "sky_in": [
+          "夜里"
+        ],
+        "commitment_due_today": "守夜"
+      },
+      "max_turns": 10,
+      "steps": [
+        {
+          "goal": "定好谁先守、守到几点",
+          "done_when": "model",
+          "say_any": [
+            "上半夜",
+            "下半夜",
+            "先守",
+            "几点"
+          ]
+        },
+        {
+          "goal": "守着火聊一会儿：可以讲一件过往，或者问他一件事",
+          "done_when": "model",
+          "say_any": [
+            "师父",
+            "以前",
+            "你呢",
+            "小时候"
+          ]
+        },
+        {
+          "goal": "到点换班，嘱咐他一句",
+          "done_when": "model",
+          "say_any": [
+            "换班",
+            "换你",
+            "该你",
+            "睡会"
+          ]
+        }
+      ],
+      "end_effects": {
+        "add": {
+          "lan_tired": 1
+        },
+        "commitment_done": "守夜"
+      },
+      "memory_template": "我们一起守了一夜",
+      "night_boost": {
+        "incidents": [
+          "wolf_howl",
+          "meteor"
+        ],
+        "p_times": 3
+      },
+      "start_any": [
+        "守夜"
+      ]
+    },
+    {
+      "id": "nuts",
+      "name": "烤松子",
+      "start_when": {
+        "object": {
+          "campfire-1": {
+            "lit": true
+          }
+        },
+        "custom": "nuts_ready"
+      },
+      "max_turns": 5,
+      "steps": [
+        {
+          "goal": "教他怎么烤：埋在火边的灰里，别直接扔火上",
+          "done_when": "model",
+          "say_any": [
+            "灰里",
+            "埋"
+          ]
+        },
+        {
+          "goal": "等着，看他会不会忍不住去翻",
+          "done_when": {
+            "user_said_any": [
+              "翻",
+              "好了吗",
+              "熟了",
+              "拿"
+            ]
+          }
+        },
+        {
+          "goal": "按结果说一句（烤糊了就笑他，刚好就分他一半）",
+          "done_when": "model",
+          "roll": {
+            "p": 0.3,
+            "yes": "烤糊了",
+            "no": "刚刚好"
+          },
+          "say_any": [
+            "糊",
+            "刚好",
+            "一半",
+            "分你"
+          ]
+        }
+      ],
+      "end_effects": {
+        "add_unless_rolled": {
+          "food": 1
+        },
+        "use_up": "pine-nuts"
+      },
+      "memory_template": "我们烤了一把松子，{result}",
+      "start_any": [
+        "松子"
+      ]
+    }
+  ]
+}

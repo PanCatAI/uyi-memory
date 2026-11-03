@@ -1,0 +1,125 @@
+{
+  "id": "path-scarf",
+  "title": "完整路径·围巾：送礼、真的戴上、第二天自然回应",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "act": {
+        "action": "give",
+        "target": "new_scarf",
+        "args": {
+          "to": "rin"
+        }
+      }
+    },
+    {
+      "say": "送你的，冬天快到了",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "……给我的？谢谢，我先收好。",
+          "action": null,
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "user_action",
+          "action": "give",
+          "target": "new_scarf",
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "say": "戴上试试吧",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "嗯，我戴上了。",
+          "action": {
+            "name": "wear",
+            "target": "new_scarf",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "state": {
+          "object": "new_scarf",
+          "field": "worn_by",
+          "equals": "rin"
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "早上好呀",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "context_section_contains": {
+          "section": "now",
+          "text": "你身上戴着：新围巾"
+        }
+      }
+    },
+    {
+      "review": "围巾现在是戴在身上：她说「戴着」才对；有没有自然回应，而不是背诵送礼经过？"
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "1d"
+    },
+    {
+      "session": "start"
+    },
+    {
+      "say": "早",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "no_repeat_proactive_within": "3d"
+      }
+    },
+    {
+      "expect": {
+        "relationship": {
+          "character": "rin",
+          "field": "gifts_received",
+          "equals": 1
+        }
+      }
+    },
+    {
+      "review": "连续两天见面，她有没有每次都机械地提围巾？"
+    }
+  ]
+}

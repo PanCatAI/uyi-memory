@@ -1,0 +1,19 @@
+{
+  "note": "2.0 附录 B：memory-lab 状态 → 造物台 UAL 片段，按顺序取第一个动作库里有的；都没有就用 fallback 并提示一次「缺少片段」。片段名来自 /api/state 的 animations[].clips（UAL 46 段、UAL2 42 段）。UAL 里没有 Wave，挥手退到 Interact。",
+  "fallback": "Idle_Loop",
+  "fade": 0.3,
+  "states": {
+    "stand":      { "clips": ["Idle_Loop", "idle"], "loop": true },
+    "walk":       { "clips": ["Walk_Loop", "walk"], "loop": true },
+    "sit_enter":  { "clips": ["Sitting_Enter"], "loop": false, "then": "sit" },
+    "sit":        { "clips": ["Sitting_Idle_Loop"], "loop": true, "lower": 0.45 },
+    "sit_talk":   { "clips": ["Sitting_Talking_Loop", "Sitting_Idle_Loop"], "loop": true },
+    "talk":       { "clips": ["Idle_Talking_Loop", "Idle_Loop"], "loop": true },
+    "pick_up":    { "clips": ["PickUp_Table", "Crouch_Fwd_Loop"], "loop": false, "seconds": 1 },
+    "tend_fire":  { "clips": ["Crouch_Fwd_Loop", "PickUp_Table"], "loop": false, "seconds": 2 },
+    "wave":       { "clips": ["Wave", "Interact"], "loop": false },
+    "yes":        { "clips": ["Yes", "agree"], "loop": false },
+    "no":         { "clips": ["Idle_No_Loop", "headShake"], "loop": false, "seconds": 1.5 },
+    "draw_map":   { "clips": ["Sitting_Idle_Loop"], "loop": true, "neck": 15 }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "lighthouse",
+  "title": "灯塔：一起改造过的地方，再去时想起来",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    { "session": "start" },
+    { "say": "你一直想上灯塔顶吧？我给你搭个楼梯", "to": "rin" },
+    { "act": { "action": "build", "target": "stairs", "args": { "room": "lighthouse" } } },
+    { "say": "楼梯搭好了，上去点灯吧", "to": "rin",
+      "mock": { "reply": { "say": "真的有楼梯了……我去试试！", "action": { "name": "walk_to", "target": "lighthouse", "args": {} }, "used": [], "self_claims": [] } } },
+    { "say": "加油", "to": "rin",
+      "mock": { "reply": { "say": "我上来了！", "action": { "name": "climb", "target": "stairs", "args": {} }, "used": [], "self_claims": [] } } },
+    { "expect": { "event": { "type": "object_created", "target": "stairs", "min": 1 } } },
+    { "expect": { "event": { "type": "char_action", "action": "climb", "outcome": "ok", "min": 1 } } },
+    { "say": "灯呢？", "to": "rin",
+      "mock": { "reply": { "say": "我把灯点亮了。", "action": { "name": "switch", "target": "lamp", "args": {} }, "used": [], "self_claims": [] } } },
+    { "expect": { "state": { "object": "lamp", "field": "state.on", "equals": true } } },
+    { "wait_jobs": true },
+    { "session": "end" },
+    { "advance": "5d" },
+    { "session": "start" },
+    { "say": "我们去灯塔那边走走吧", "to": "rin",
+      "mock": { "reply": { "say": "好呀。", "action": { "name": "walk_to", "target": "lighthouse", "args": {} }, "used": [], "self_claims": [] } } },
+    { "say": "今天风好大", "to": "rin" },
+    { "expect": { "hint_rule": "same_place", "min": 1 } },
+    { "expect": { "reply_contains_any": ["楼梯", "灯"], "live_only": true } }
+  ]
+}

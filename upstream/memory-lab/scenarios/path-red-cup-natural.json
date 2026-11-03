@@ -1,0 +1,153 @@
+{
+  "id": "path-red-cup-natural",
+  "title": "完整路径·红杯子（自然说法 + 别再提）",
+  "scene": "island",
+  "user_name": "你",
+  "steps": [
+    {
+      "session": "start"
+    },
+    {
+      "say": "这红杯子是我奶奶以前用的，帮我收好哦",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "嗯，我会好好收着。",
+          "action": {
+            "name": "pick_up",
+            "target": "red_cup",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "say": "搁衣柜上就行",
+      "to": "rin",
+      "mock": {
+        "reply": {
+          "say": "放在衣柜上了。",
+          "action": {
+            "name": "put_down",
+            "target": "wardrobe",
+            "args": {}
+          },
+          "used": [],
+          "self_claims": []
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "action": "put_down",
+          "target": "wardrobe",
+          "outcome": "ok",
+          "min": 1
+        }
+      }
+    },
+    {
+      "expect": {
+        "state": {
+          "object": "red_cup",
+          "field": "holder",
+          "equals": null
+        }
+      }
+    },
+    {
+      "wait_jobs": true
+    },
+    {
+      "expect": {
+        "fact": {
+          "character": "rin",
+          "predicate": "relation_to_object",
+          "object_contains": "红杯子",
+          "status": "active"
+        }
+      }
+    },
+    {
+      "session": "end"
+    },
+    {
+      "advance": "2d"
+    },
+    {
+      "session": "start",
+      "mock": {
+        "catchup": {
+          "actions": [
+            {
+              "name": "pick_up",
+              "target": "red_cup",
+              "args": {},
+              "why": "想擦一擦"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "expect": {
+        "event": {
+          "type": "char_action",
+          "actor": "rin",
+          "offscreen": 1,
+          "min": 1,
+          "max": 3
+        }
+      }
+    },
+    {
+      "say": "我回来了～",
+      "to": "rin"
+    },
+    {
+      "say": "对了，那个杯子呢？",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "reply_contains_any": [
+          "杯子"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "review": "她有没有说清来源：杯子是你奶奶留下的（你说的）、放过衣柜、你不在时她有没有动过它？不在场的事有没有说成你们一起做的？"
+    },
+    {
+      "say": "以后别再提我奶奶的事了",
+      "to": "rin"
+    },
+    {
+      "say": "我们聊点别的吧",
+      "to": "rin"
+    },
+    {
+      "expect": {
+        "hints_exclude_text": [
+          "奶奶"
+        ]
+      }
+    },
+    {
+      "expect": {
+        "reply_not_contains": [
+          "奶奶"
+        ],
+        "live_only": true
+      }
+    },
+    {
+      "review": "说了别再提之后，她有没有再主动提奶奶？"
+    }
+  ]
+}

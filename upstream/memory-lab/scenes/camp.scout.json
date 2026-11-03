@@ -1,0 +1,147 @@
+{
+ "note": "3.0 G2：探路发现（docs/PLAN-3.0.md 附录 C.6）。text 只给用户看，不进她的上下文；她只能从用户嘴里知道。",
+ "world_words": [
+  "探路",
+  "林子",
+  "干沟",
+  "北坡",
+  "溪谷",
+  "地图"
+ ],
+ "at": "09:00",
+ "second_chance": 0.5,
+ "blocked": {
+  "南边溪谷": {
+   "incident_active": "creek_rise",
+   "reason": "溪水涨了"
+  }
+ },
+ "finds": [
+  {
+   "id": "east_old_pine",
+   "dir": "东边林子",
+   "text": "一棵被雷劈过的老松，树干裂成两半",
+   "li": 3,
+   "kind": "landmark",
+   "keywords": [
+    "雷劈",
+    "老松",
+    "裂"
+   ]
+  },
+  {
+   "id": "east_pine_nuts",
+   "dir": "东边林子",
+   "text": "一片松子落了一地的林子",
+   "li": 4,
+   "kind": "resource",
+   "keywords": [
+    "松子"
+   ]
+  },
+  {
+   "id": "east_game_trail",
+   "dir": "东边林子",
+   "text": "一条往北拐的兽道",
+   "li": 5,
+   "kind": "landmark",
+   "keywords": [
+    "兽道",
+    "往北"
+   ]
+  },
+  {
+   "id": "west_fork",
+   "dir": "西边干沟",
+   "text": "干沟中间一个岔口，左边那条更宽",
+   "li": 4,
+   "kind": "landmark",
+   "keywords": [
+    "岔口",
+    "左边"
+   ]
+  },
+  {
+   "id": "west_rockfall",
+   "dir": "西边干沟",
+   "text": "干沟尽头一堆落石，过不去",
+   "li": 6,
+   "kind": "landmark",
+   "keywords": [
+    "落石",
+    "过不去"
+   ]
+  },
+  {
+   "id": "north_snow_marker",
+   "dir": "北坡脚",
+   "text": "半山腰有一块插着木杆的石头，像是标雪线的",
+   "li": 7,
+   "kind": "landmark",
+   "keywords": [
+    "木杆",
+    "雪线",
+    "石头"
+   ]
+  },
+  {
+   "id": "north_old_fire",
+   "dir": "北坡脚",
+   "text": "一个旧火堆，石头摆成圈，灰是干的",
+   "li": 5,
+   "kind": "clue",
+   "keywords": [
+    "火堆",
+    "灰",
+    "石圈"
+   ],
+   "when": {
+    "stage_gte": "熟悉"
+   },
+   "once": true
+  },
+  {
+   "id": "north_question_mark",
+   "dir": "北坡脚",
+   "text": "一块石头上刻着一个问号，刻痕很旧",
+   "li": 8,
+   "kind": "clue",
+   "keywords": [
+    "问号",
+    "刻"
+   ],
+   "when": {
+    "stage_gte": "亲近"
+   },
+   "once": true
+  },
+  {
+   "id": "south_creek",
+   "dir": "南边溪谷",
+   "text": "一条溪，水很急，最深的地方没过膝盖",
+   "li": 2,
+   "kind": "landmark",
+   "keywords": [
+    "溪",
+    "水"
+   ],
+   "when": {
+    "incident_not_active": "creek_rise"
+   }
+  },
+  {
+   "id": "south_ford",
+   "dir": "南边溪谷",
+   "text": "溪上有一段浅滩，踩石头能过去",
+   "li": 3,
+   "kind": "landmark",
+   "keywords": [
+    "浅滩",
+    "石头"
+   ],
+   "when": {
+    "incident_not_active": "creek_rise"
+   }
+  }
+ ]
+}
